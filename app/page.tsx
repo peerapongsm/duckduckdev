@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 
 const EMAIL = "peerapongsm03@gmail.com";
 
+// next/image does not prepend basePath when images.unoptimized is set
+const BASE_PATH = process.env.NODE_ENV === "production" ? "/duckduckdev" : "";
+
 type Lang = "th" | "en";
 
 const COPY = {
@@ -135,13 +138,13 @@ const COPY = {
 const PROJECT_META = [
   {
     name: "DuckDuckDrug",
-    icon: "/duckduckdrug.png",
+    icon: `${BASE_PATH}/duckduckdrug.png`,
     stack: "Web SaaS · Next.js + MongoDB",
     accent: "bg-mint",
   },
   {
     name: "DuckDuckWash",
-    icon: "/duckduckwash.png",
+    icon: `${BASE_PATH}/duckduckwash.png`,
     stack: "Desktop · Electron + SQLite",
     accent: "bg-wash",
   },
