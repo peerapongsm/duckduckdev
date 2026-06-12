@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #fffbf2;
+  --color-paper: #fff6e3;
+  --color-ink: #221a10;
+  --color-duck: #ffc93c;
+  --color-duckdeep: #ffb800;
+  --color-beak: #ff8a3d;
+  --color-wash: #4fa8d8;
+  --color-washdeep: #2e7fb0;
+  --color-mint: #5fbf8f;
+
+  --font-display: var(--font-fredoka), var(--font-kanit), sans-serif;
+  --font-body: var(--font-nunito), var(--font-kanit), sans-serif;
+
+  --shadow-hard: 6px 6px 0 0 var(--color-ink);
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-hard-lg: 10px 10px 0 0 var(--color-ink);
+
+  --animate-bob: bob 3.2s ease-in-out infinite;
+  --animate-bob-slow: bob 4.6s ease-in-out infinite;
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-wiggle: wiggle 5s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+  ::selection {
+    background: var(--color-duck);
+    color: var(--color-ink);
+  }
+}
+
+@utility dotgrid {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-ink) 14%, transparent) 1.5px,
+    transparent 1.5px
+  );
+  background-size: 26px 26px;
+}
+
+@utility rise {
+  opacity: 0;
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.rise-1 {
+  animation-delay: 0.05s;
+}
+.rise-2 {
+  animation-delay: 0.18s;
+}
+.rise-3 {
+  animation-delay: 0.32s;
+}
+.rise-4 {
+  animation-delay: 0.46s;
+}
+.rise-5 {
+  animation-delay: 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rise {
+    opacity: 1;
+  }
+}
