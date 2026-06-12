@@ -260,7 +260,7 @@ export default function Home() {
             {t.h1Post}
           </h1>
 
-          <p className="rise rise-3 mt-7 max-w-xl text-lg font-semibold leading-relaxed text-ink/80 sm:text-xl">
+          <p className="rise rise-3 mt-7 max-w-xl text-lg leading-relaxed text-ink/80 sm:text-xl">
             {t.heroSub}
           </p>
 
@@ -341,7 +341,7 @@ export default function Home() {
 
                   <h3 className="mt-6 font-display text-3xl font-semibold">{p.name}</h3>
                   <p className="mt-1 font-display text-xl text-ink/70">{c.tagline}</p>
-                  <p className="mt-4 font-semibold leading-relaxed text-ink/80">
+                  <p className="mt-4 leading-relaxed text-ink/80">
                     {c.description}
                   </p>
 
@@ -396,7 +396,7 @@ export default function Home() {
                 <h3 className="mt-5 font-display text-2xl font-semibold">
                   {t.steps[i].title}
                 </h3>
-                <p className="mt-2 font-semibold leading-relaxed text-ink/80">
+                <p className="mt-2 leading-relaxed text-ink/80">
                   {t.steps[i].body}
                 </p>
               </div>
@@ -415,7 +415,7 @@ export default function Home() {
             <span className="text-duck">{t.contactHighlight}</span>
             {t.contactPost}
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg font-semibold text-cream/70">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-cream/80">
             {t.contactSub}
           </p>
           <a

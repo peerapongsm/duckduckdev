@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
-import { Fredoka, Kanit, Nunito } from "next/font/google";
+import { Atkinson_Hyperlegible, Lexend, Sarabun } from "next/font/google";
 import "./globals.css";
 
-const fredoka = Fredoka({
+const lexend = Lexend({
   subsets: ["latin"],
-  variable: "--font-fredoka",
+  variable: "--font-lexend",
 });
 
-const nunito = Nunito({
+const atkinson = Atkinson_Hyperlegible({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  weight: ["400", "700"],
+  variable: "--font-atkinson",
 });
 
-const kanit = Kanit({
+const sarabun = Sarabun({
   subsets: ["thai", "latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-kanit",
+  variable: "--font-sarabun",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="th"
-      className={`${fredoka.variable} ${nunito.variable} ${kanit.variable}`}
+      className={`${lexend.variable} ${atkinson.variable} ${sarabun.variable}`}
     >
       <body className="antialiased">{children}</body>
     </html>

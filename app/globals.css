@@ -11,8 +11,8 @@
   --color-washdeep: #2e7fb0;
   --color-mint: #5fbf8f;
 
-  --font-display: var(--font-fredoka), var(--font-kanit), sans-serif;
-  --font-body: var(--font-nunito), var(--font-kanit), sans-serif;
+  --font-display: var(--font-lexend), var(--font-sarabun), sans-serif;
+  --font-body: var(--font-atkinson), var(--font-sarabun), sans-serif;
 
   --shadow-hard: 6px 6px 0 0 var(--color-ink);
   --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
