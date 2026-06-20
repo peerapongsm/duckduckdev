@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const EMAIL = "peerapongsm03@gmail.com";
+const EMAIL = "peerapongsm@hotmail.co.th";
 
 // next/image does not prepend basePath when images.unoptimized is set
 const BASE_PATH = process.env.NODE_ENV === "production" ? "/duckduckdev" : "";
