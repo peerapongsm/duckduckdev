@@ -29,10 +29,12 @@ const COPY = {
       "สร้างเพื่อธุรกิจขนาดเล็ก",
       "DUCKDUCKWASH",
       "เสร็จเป็นสัปดาห์ ไม่ใช่ไตรมาส",
+      "DUCKDUCKCARE",
       "ข้อมูลเป็นของคุณ",
+      "PANYA",
     ],
     workKicker: "ผลงานในบ่อ",
-    workTitle: "แอปจริง ร้านจริง",
+    workTitle: "ของจริง ใช้งานได้จริง",
     projects: [
       {
         tagline: "ระบบจัดการร้านขายยา หลายสาขา บนคลาวด์",
@@ -45,6 +47,30 @@ const COPY = {
         description:
           "แอปเดสก์ท็อปสำหรับร้านซักรีดจริง ออกแบบให้เจ้าของร้านที่ไม่ถนัดเทคโนโลยีใช้ง่าย รับออเดอร์ในไม่กี่วินาที เช็คลิสต์เสื้อผ้ากันลืมกันเถียง และรายงานที่เคยอยู่ใน Excel",
         chips: ["รับออเดอร์", "เช็คลิสต์เสื้อผ้า", "ราคา", "รายจ่าย", "รายงาน"],
+      },
+      {
+        tagline: "แอปจับคู่คนพาผู้สูงอายุไปหาหมอ บนมือถือ",
+        description:
+          "แพลตฟอร์มมือถือ iOS/Android ที่จับคู่ผู้สูงอายุกับผู้ดูแลรับจ้างพาไปโรงพยาบาล จองล่วงหน้าได้ตั้งแต่เป็นชั่วโมงจนถึงเป็นเดือน แจ้งเตือนทั้งสองฝั่งก่อนถึงนัด และจ่ายเงินผ่าน OMISE ครบจบในแอป",
+        chips: ["จองคิว", "จับคู่ผู้ดูแล", "แจ้งเตือน", "จ่ายผ่าน OMISE", "ให้คะแนน"],
+      },
+      {
+        tagline: "AI workspace ภายในองค์กร แบบ air-gapped",
+        description:
+          "พื้นที่ทำงาน AI สำหรับพนักงานองค์กรขนาดใหญ่ รันบนเซิร์ฟเวอร์ตัวเอง ไม่ต่อเน็ตภายนอก ใช้โมเดลโอเพนซอร์สบนเครื่อง — แชต ผู้ช่วยเอเจนต์ และค้นไฟล์ภายใน ออกแบบให้ผ่านมาตรฐานความปลอดภัยและ PDPA",
+        chips: ["แชต AI", "เอเจนต์", "ค้นเอกสาร", "ออนพรีม", "PDPA"],
+      },
+      {
+        tagline: "แอปจัดการงานส่วนตัว ทำงานออฟไลน์ 100%",
+        description:
+          "แอปเดสก์ท็อปจัดการงานส่วนตัวสำหรับใช้คนเดียวบนเครื่องตัวเอง ดับเบิลคลิกเปิดได้เลย ไม่ต้องต่อเน็ต ไม่ต้องล็อกอิน — โปรเจกต์ บอร์ด ปฏิทิน จับเวลา และเอกสาร เก็บข้อมูลในเครื่องล้วน ๆ",
+        chips: ["บอร์ดงาน", "ปฏิทิน", "จับเวลา", "เอกสาร", "ออฟไลน์"],
+      },
+      {
+        tagline: "บอทเทรดอัตโนมัติบน MetaTrader 5",
+        description:
+          "Expert Advisor ภาษา MQL5 ที่เทรดเองบนแพลตฟอร์ม MetaTrader 5 พร้อมระบบจัดการความเสี่ยงต่อไม้ และชุดเครื่องมือ backtest อัตโนมัติสำหรับทดสอบกลยุทธ์กับข้อมูลย้อนหลังหลายปี",
+        chips: ["MQL5 EA", "จัดการความเสี่ยง", "Backtest", "หลาย TF", "MT5"],
       },
     ],
     pondCtaPre: "ร้านของคุณอาจเป็นเป็ดตัวถัดไปในบ่อ ",
@@ -90,10 +116,12 @@ const COPY = {
       "BUILT FOR SMALL BUSINESS",
       "DUCKDUCKWASH",
       "WEEKS, NOT QUARTERS",
+      "DUCKDUCKCARE",
       "YOUR DATA STAYS YOURS",
+      "PANYA",
     ],
     workKicker: "The pond so far",
-    workTitle: "Real apps, real shops.",
+    workTitle: "Real apps, real users.",
     projects: [
       {
         tagline: "Drugstore management, multi-store, in the cloud.",
@@ -106,6 +134,30 @@ const COPY = {
         description:
           "A desktop app for a real laundry shop, built for a non-technical owner. Order intake in seconds, garment checklists that end disputes, and reports that used to live in Excel.",
         chips: ["Order intake", "Garment checklist", "Pricing", "Expenses", "Reports"],
+      },
+      {
+        tagline: "A mobile marketplace that gets elderly people to their appointments.",
+        description:
+          "An iOS and Android app that matches elderly people with paid caretakers who escort them to hospital visits. Book hours or months ahead, reminders for both sides, and in-app payment through OMISE.",
+        chips: ["Booking", "Caretaker match", "Reminders", "OMISE pay", "Ratings"],
+      },
+      {
+        tagline: "An air-gapped internal AI workspace for a large institution.",
+        description:
+          "A self-hosted AI workspace for thousands of staff, running on-prem with open-source models and no external calls. Chat, an agent assistant, and internal document search — designed to clear strict security and PDPA requirements.",
+        chips: ["AI chat", "Agent", "Doc search", "On-prem", "PDPA"],
+      },
+      {
+        tagline: "A personal planning app that runs fully offline.",
+        description:
+          "A desktop app for a single user on their own laptop — double-click to open, no internet, no login. Projects, boards, calendar, time tracking and docs, all stored locally.",
+        chips: ["Boards", "Calendar", "Time tracking", "Docs", "Offline"],
+      },
+      {
+        tagline: "An automated trading bot for MetaTrader 5.",
+        description:
+          "An MQL5 Expert Advisor that trades on its own on MetaTrader 5, with per-trade risk sizing and an automated backtesting harness to test strategies against years of historical data.",
+        chips: ["MQL5 EA", "Risk sizing", "Backtest", "Multi-TF", "MT5"],
       },
     ],
     pondCtaPre: "Your shop could be the next duck in the pond. ",
@@ -139,14 +191,44 @@ const PROJECT_META = [
   {
     name: "DuckDuckDrug",
     icon: `${BASE_PATH}/duckduckdrug.png`,
+    emoji: "",
     stack: "Web SaaS · Next.js + MongoDB",
     accent: "bg-mint",
   },
   {
     name: "DuckDuckWash",
     icon: `${BASE_PATH}/duckduckwash.png`,
+    emoji: "",
     stack: "Desktop · Electron + SQLite",
     accent: "bg-wash",
+  },
+  {
+    name: "DuckDuckCare",
+    icon: "",
+    emoji: "🩺",
+    stack: "Mobile · React Native + Supabase",
+    accent: "bg-beak",
+  },
+  {
+    name: "Panya",
+    icon: "",
+    emoji: "🧠",
+    stack: "Enterprise · .NET 10 + Semantic Kernel",
+    accent: "bg-wash",
+  },
+  {
+    name: "DuckDuckPlan",
+    icon: "",
+    emoji: "🗂️",
+    stack: "Desktop · Electron + SQLite",
+    accent: "bg-mint",
+  },
+  {
+    name: "DuckDuckTrade",
+    icon: "",
+    emoji: "📈",
+    stack: "Algo trading · MQL5 / MT5",
+    accent: "bg-duck",
   },
 ];
 
@@ -319,20 +401,29 @@ export default function Home() {
                 <article
                   key={p.name}
                   className={`group rounded-3xl border-2 border-ink bg-cream p-7 shadow-hard transition-transform hover:-translate-y-1.5 hover:rotate-[0.4deg] sm:p-9 ${
-                    i === 1 ? "lg:translate-y-10" : ""
+                    i % 2 === 1 ? "lg:translate-y-10" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div
                       className={`size-20 overflow-hidden rounded-2xl border-2 border-ink ${p.accent} shadow-hard-sm transition-transform group-hover:rotate-[-4deg]`}
                     >
-                      <Image
-                        src={p.icon}
-                        alt={`${p.name} logo`}
-                        width={160}
-                        height={160}
-                        className="size-full object-cover"
-                      />
+                      {p.icon ? (
+                        <Image
+                          src={p.icon}
+                          alt={`${p.name} logo`}
+                          width={160}
+                          height={160}
+                          className="size-full object-cover"
+                        />
+                      ) : (
+                        <span
+                          aria-hidden="true"
+                          className="grid size-full place-items-center text-4xl"
+                        >
+                          {p.emoji}
+                        </span>
+                      )}
                     </div>
                     <span className="rounded-full border-2 border-ink bg-cream px-3 py-1 text-xs font-extrabold uppercase tracking-wide">
                       {p.stack}
