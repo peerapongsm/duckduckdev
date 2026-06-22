@@ -72,6 +72,12 @@ const COPY = {
           "Expert Advisor ภาษา MQL5 ที่เทรดเองบนแพลตฟอร์ม MetaTrader 5 พร้อมระบบจัดการความเสี่ยงต่อไม้ และชุดเครื่องมือ backtest อัตโนมัติสำหรับทดสอบกลยุทธ์กับข้อมูลย้อนหลังหลายปี",
         chips: ["MQL5 EA", "จัดการความเสี่ยง", "Backtest", "หลาย TF", "MT5"],
       },
+      {
+        tagline: "กรอกแบบฟอร์มราชการไทยบนมือถือ ได้ PDF พร้อมพิมพ์",
+        description:
+          "เว็บแอปภาษาไทยที่รวมแบบฟอร์มราชการ 19 แบบไว้ที่เดียว — ภาษีป้าย จดทะเบียนพาณิชย์ ใบอนุญาตร้านอาหาร ก่อสร้าง ร้านขายยา ประกันสังคม ฯลฯ ค้นหาตามประเภทธุรกิจ กรอกบนมือถือ คำนวณค่าที่ต้องจ่ายให้อัตโนมัติ แล้วได้ไฟล์ PDF หน้าตาเหมือนฟอร์มจริงพร้อมพิมพ์ยื่น — ไม่ต้องมี Office ไม่ต้องมีคอมพิวเตอร์",
+        chips: ["19 ฟอร์มราชการ", "ค้นตามธุรกิจ", "คำนวณอัตโนมัติ", "PDF เหมือนฟอร์มจริง", "เก็บไว้ยื่นปีหน้า"],
+      },
     ],
     pondCtaPre: "ร้านของคุณอาจเป็นเป็ดตัวถัดไปในบ่อ ",
     pondCtaLink: "ทักมาคุยกัน",
@@ -159,6 +165,12 @@ const COPY = {
           "An MQL5 Expert Advisor that trades on its own on MetaTrader 5, with per-trade risk sizing and an automated backtesting harness to test strategies against years of historical data.",
         chips: ["MQL5 EA", "Risk sizing", "Backtest", "Multi-TF", "MT5"],
       },
+      {
+        tagline: "Fill Thai government forms on your phone, get a print-ready PDF.",
+        description:
+          "A Thai-language web app bundling 19 government compliance forms in one place — signboard tax, commercial registration, restaurant and construction permits, pharmacy licences, social security and more. Search by industry, fill on a phone, auto-compute any fees, and get a print-ready PDF that mirrors the official form — no Office, no desktop needed.",
+        chips: ["19 gov forms", "Search by industry", "Auto fee calc", "Form-faithful PDF", "Save & re-file"],
+      },
     ],
     pondCtaPre: "Your shop could be the next duck in the pond. ",
     pondCtaLink: "Say hello",
@@ -218,10 +230,10 @@ const PROJECT_META = [
   },
   {
     name: "DuckDuckPlan",
-    icon: "",
-    emoji: "🗂️",
+    icon: `${BASE_PATH}/duckduckplan.png`,
+    emoji: "",
     stack: "Desktop · Electron + SQLite",
-    accent: "bg-mint",
+    accent: "bg-cream",
   },
   {
     name: "DuckDuckTrade",
@@ -229,6 +241,13 @@ const PROJECT_META = [
     emoji: "📈",
     stack: "Algo trading · MQL5 / MT5",
     accent: "bg-duck",
+  },
+  {
+    name: "PromptFiled",
+    icon: `${BASE_PATH}/promptfiled.png`,
+    emoji: "",
+    stack: "Web · Next.js + Supabase",
+    accent: "bg-cream",
   },
 ];
 
@@ -451,7 +470,7 @@ export default function Home() {
             })}
           </div>
 
-          <p className="mt-20 max-w-md font-display text-2xl font-medium text-ink/60 lg:mt-24">
+          <p className="mt-20 max-w-2xl font-display text-2xl font-medium text-ink/60 lg:mt-24">
             {t.pondCtaPre}
             <a
               href={`mailto:${EMAIL}`}
