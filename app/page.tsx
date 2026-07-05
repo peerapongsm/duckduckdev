@@ -45,12 +45,6 @@ const COPY = {
         chips: ["สต็อกยา", "งานขาย", "จัดซื้อ", "หลายสาขา", "รายงาน"],
       },
       {
-        tagline: "แอปหน้าร้านซักรีด ใช้ได้โดยไม่ต้องมีเน็ต",
-        description:
-          "แอปเดสก์ท็อปสำหรับร้านซักรีดจริง ออกแบบให้เจ้าของร้านที่ไม่ถนัดเทคโนโลยีใช้ง่าย รับออเดอร์ในไม่กี่วินาที เช็คลิสต์เสื้อผ้ากันลืมกันเถียง และรายงานที่เคยอยู่ใน Excel",
-        chips: ["รับออเดอร์", "เช็คลิสต์เสื้อผ้า", "ราคา", "รายจ่าย", "รายงาน"],
-      },
-      {
         tagline: "แอปจับคู่คนพาผู้สูงอายุไปหาหมอ บนมือถือ",
         description:
           "แพลตฟอร์มมือถือ iOS/Android ที่จับคู่ผู้สูงอายุกับผู้ดูแลรับจ้างพาไปโรงพยาบาล จองล่วงหน้าได้ตั้งแต่เป็นชั่วโมงจนถึงเป็นเดือน แจ้งเตือนทั้งสองฝั่งก่อนถึงนัด และจ่ายเงินผ่าน OMISE ครบจบในแอป",
@@ -63,22 +57,10 @@ const COPY = {
         chips: ["แชต AI", "เอเจนต์", "ค้นเอกสาร", "ออนพรีม", "PDPA"],
       },
       {
-        tagline: "แอปจัดการงานส่วนตัว ทำงานออฟไลน์ 100%",
-        description:
-          "แอปเดสก์ท็อปจัดการงานส่วนตัวสำหรับใช้คนเดียวบนเครื่องตัวเอง ดับเบิลคลิกเปิดได้เลย ไม่ต้องต่อเน็ต ไม่ต้องล็อกอิน — โปรเจกต์ บอร์ด ปฏิทิน จับเวลา และเอกสาร เก็บข้อมูลในเครื่องล้วน ๆ",
-        chips: ["บอร์ดงาน", "ปฏิทิน", "จับเวลา", "เอกสาร", "ออฟไลน์"],
-      },
-      {
         tagline: "บอทเทรดอัตโนมัติบน MetaTrader 5",
         description:
           "Expert Advisor ภาษา MQL5 ที่เทรดเองบนแพลตฟอร์ม MetaTrader 5 พร้อมระบบจัดการความเสี่ยงต่อไม้ และชุดเครื่องมือ backtest อัตโนมัติสำหรับทดสอบกลยุทธ์กับข้อมูลย้อนหลังหลายปี",
         chips: ["MQL5 EA", "จัดการความเสี่ยง", "Backtest", "หลาย TF", "MT5"],
-      },
-      {
-        tagline: "กรอกแบบฟอร์มราชการไทยบนมือถือ ได้ PDF พร้อมพิมพ์",
-        description:
-          "เว็บแอปภาษาไทยที่รวมแบบฟอร์มราชการ 19 แบบไว้ที่เดียว — ภาษีป้าย จดทะเบียนพาณิชย์ ใบอนุญาตร้านอาหาร ก่อสร้าง ร้านขายยา ประกันสังคม ฯลฯ ค้นหาตามประเภทธุรกิจ กรอกบนมือถือ คำนวณค่าที่ต้องจ่ายให้อัตโนมัติ แล้วได้ไฟล์ PDF หน้าตาเหมือนฟอร์มจริงพร้อมพิมพ์ยื่น — ไม่ต้องมี Office ไม่ต้องมีคอมพิวเตอร์",
-        chips: ["19 ฟอร์มราชการ", "ค้นตามธุรกิจ", "คำนวณอัตโนมัติ", "PDF เหมือนฟอร์มจริง", "เก็บไว้ยื่นปีหน้า"],
       },
     ],
     pondCtaPre: "ร้านของคุณอาจเป็นเป็ดตัวถัดไปในบ่อ ",
@@ -111,6 +93,7 @@ const COPY = {
       blurb: `นอกจากงานลูกค้า ยังมีสนามทดลองส่วนตัว — ${ARMORY_BUILT} จาก ${ARMORY_TOTAL} โปรเจกต์เล็ก ๆ ที่ลงมือทำในหนึ่งปี อีก ${ARMORY_TOTAL - ARMORY_BUILT} กำลังจะมา`,
       cta: "เข้าคลังแสงทั้งหมด →",
       soon: "เร็ว ๆ นี้",
+      building: "กำลังสร้าง",
     },
   },
   en: {
@@ -146,12 +129,6 @@ const COPY = {
         chips: ["Inventory", "Sales", "Purchasing", "Multi-branch", "Reports"],
       },
       {
-        tagline: "A laundry counter app that runs with zero internet.",
-        description:
-          "A desktop app for a real laundry shop, built for a non-technical owner. Order intake in seconds, garment checklists that end disputes, and reports that used to live in Excel.",
-        chips: ["Order intake", "Garment checklist", "Pricing", "Expenses", "Reports"],
-      },
-      {
         tagline: "A mobile marketplace that gets elderly people to their appointments.",
         description:
           "An iOS and Android app that matches elderly people with paid caretakers who escort them to hospital visits. Book hours or months ahead, reminders for both sides, and in-app payment through OMISE.",
@@ -164,22 +141,10 @@ const COPY = {
         chips: ["AI chat", "Agent", "Doc search", "On-prem", "PDPA"],
       },
       {
-        tagline: "A personal planning app that runs fully offline.",
-        description:
-          "A desktop app for a single user on their own laptop — double-click to open, no internet, no login. Projects, boards, calendar, time tracking and docs, all stored locally.",
-        chips: ["Boards", "Calendar", "Time tracking", "Docs", "Offline"],
-      },
-      {
         tagline: "An automated trading bot for MetaTrader 5.",
         description:
           "An MQL5 Expert Advisor that trades on its own on MetaTrader 5, with per-trade risk sizing and an automated backtesting harness to test strategies against years of historical data.",
         chips: ["MQL5 EA", "Risk sizing", "Backtest", "Multi-TF", "MT5"],
-      },
-      {
-        tagline: "Fill Thai government forms on your phone, get a print-ready PDF.",
-        description:
-          "A Thai-language web app bundling 19 government compliance forms in one place — signboard tax, commercial registration, restaurant and construction permits, pharmacy licences, social security and more. Search by industry, fill on a phone, auto-compute any fees, and get a print-ready PDF that mirrors the official form — no Office, no desktop needed.",
-        chips: ["19 gov forms", "Search by industry", "Auto fee calc", "Form-faithful PDF", "Save & re-file"],
       },
     ],
     pondCtaPre: "Your shop could be the next duck in the pond. ",
@@ -212,6 +177,7 @@ const COPY = {
       blurb: `Beyond client work, a personal playground — ${ARMORY_BUILT} of ${ARMORY_TOTAL} tiny projects shipped in a year, ${ARMORY_TOTAL - ARMORY_BUILT} more on the way`,
       cta: "Enter the full Armory →",
       soon: "soon",
+      building: "building",
     },
   },
 } as const;
@@ -223,13 +189,6 @@ const PROJECT_META = [
     emoji: "",
     stack: "Web SaaS · Next.js + MongoDB",
     accent: "bg-mint",
-  },
-  {
-    name: "DuckDuckWash",
-    icon: `${BASE_PATH}/duckduckwash.png`,
-    emoji: "",
-    stack: "Desktop · Electron + SQLite",
-    accent: "bg-wash",
   },
   {
     name: "DuckDuckCare",
@@ -246,25 +205,11 @@ const PROJECT_META = [
     accent: "bg-wash",
   },
   {
-    name: "DuckDuckPlan",
-    icon: `${BASE_PATH}/duckduckplan.png`,
-    emoji: "",
-    stack: "Desktop · Electron + SQLite",
-    accent: "bg-cream",
-  },
-  {
     name: "DuckDuckTrade",
     icon: "",
     emoji: "📈",
     stack: "Algo trading · MQL5 / MT5",
     accent: "bg-duck",
-  },
-  {
-    name: "PromptFiled",
-    icon: `${BASE_PATH}/promptfiled.png`,
-    emoji: "",
-    stack: "Web · Next.js + Supabase",
-    accent: "bg-cream",
   },
 ];
 
@@ -524,27 +469,40 @@ export default function Home() {
 
           <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {ARMORY.map((p) => {
-              const planned = p.status === "planned";
+              const built = p.status === "built";
+              const badge =
+                p.status === "building" ? t.armory.building : t.armory.soon;
+              const accent = ["bg-duck", "bg-beak", "bg-wash", "bg-mint"][
+                p.id % 4
+              ];
               const inner = (
                 <>
                   <div className="flex items-start justify-between gap-2">
-                    <span className="font-display text-xs font-extrabold text-ink/40">
-                      {String(p.id).padStart(2, "0")}
+                    <span
+                      className={`grid size-9 shrink-0 place-items-center rounded-xl border-2 border-ink ${accent} text-lg shadow-hard-sm`}
+                    >
+                      {p.emoji}
                     </span>
-                    {planned ? (
-                      <span className="rounded-full border border-ink/30 bg-beak/15 px-2 py-0.5 text-[10px] font-extrabold uppercase text-beak">
-                        {t.armory.soon}
-                      </span>
-                    ) : (
+                    {built ? (
                       <span className="text-xs text-ink/40 transition-colors group-hover:text-beak">
                         ↗
+                      </span>
+                    ) : (
+                      <span
+                        className={`rounded-full border border-ink/30 px-2 py-0.5 text-[10px] font-extrabold uppercase ${
+                          p.status === "building"
+                            ? "bg-mint/25 text-ink/70"
+                            : "bg-beak/15 text-beak"
+                        }`}
+                      >
+                        {badge}
                       </span>
                     )}
                   </div>
                   <span className="mt-2 block font-display text-base font-semibold leading-snug">
                     {p.name}
                   </span>
-                  {planned && p.note && (
+                  {p.note && (
                     <span className="mt-1 block text-xs leading-snug text-ink/60">
                       {p.note}
                     </span>
@@ -553,11 +511,7 @@ export default function Home() {
               );
               return (
                 <li key={p.id}>
-                  {planned ? (
-                    <div className="h-full rounded-2xl border-2 border-dashed border-ink/25 bg-cream/50 p-4">
-                      {inner}
-                    </div>
-                  ) : (
+                  {built ? (
                     <a
                       href={p.url}
                       target="_blank"
@@ -566,6 +520,10 @@ export default function Home() {
                     >
                       {inner}
                     </a>
+                  ) : (
+                    <div className="h-full rounded-2xl border-2 border-dashed border-ink/25 bg-cream/50 p-4">
+                      {inner}
+                    </div>
                   )}
                 </li>
               );
