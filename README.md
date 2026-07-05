@@ -2,7 +2,7 @@
 
 Portfolio site for DuckDuckDev — custom apps on demand for small businesses.
 
-Live: https://peerapongsm.github.io/duckduckdev
+Live: https://duckduckdev.peerapongsm.dev
 
 ## Stack
 

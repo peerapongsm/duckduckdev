@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ARMORY, ARMORY_BUILT, ARMORY_TOTAL } from "./armory-data";
 
 const EMAIL = "contact@peerapongsm.dev";
 
-// next/image does not prepend basePath when images.unoptimized is set
-const BASE_PATH = process.env.NODE_ENV === "production" ? "/duckduckdev" : "";
+// custom domain (duckduckdev.peerapongsm.dev) serves from root — no basePath
+const BASE_PATH = "";
 
 type Lang = "th" | "en";
 
@@ -14,6 +15,7 @@ const COPY = {
   th: {
     badge: "app on demand · สำหรับธุรกิจขนาดเล็ก",
     navWork: "ผลงาน",
+    navArmory: "คลังแสง",
     navProcess: "ขั้นตอน",
     navCta: "เริ่มโปรเจกต์",
     h1Pre: "แอปเล็ก ๆ ที่ทำให้ร้านคุณ ",
@@ -103,10 +105,18 @@ const COPY = {
     contactSub:
       "เล่าให้ฟังว่าอะไรกินเวลาคุณทุกวัน ถ้าแอปเล็ก ๆ แก้ได้ เราจะสร้างแอปนั้นให้",
     footerFamily: "หนึ่งในครอบครัว duckduck",
+    armory: {
+      kicker: "The Armory · คลังแสง",
+      title: "ปีแห่งการสร้าง 52 โปรเจกต์",
+      blurb: `นอกจากงานลูกค้า ยังมีสนามทดลองส่วนตัว — ${ARMORY_BUILT} จาก ${ARMORY_TOTAL} โปรเจกต์เล็ก ๆ ที่ลงมือทำในหนึ่งปี อีก ${ARMORY_TOTAL - ARMORY_BUILT} กำลังจะมา`,
+      cta: "เข้าคลังแสงทั้งหมด →",
+      soon: "เร็ว ๆ นี้",
+    },
   },
   en: {
     badge: "app on demand · for small business",
     navWork: "Work",
+    navArmory: "Armory",
     navProcess: "Process",
     navCta: "Start a project",
     h1Pre: "Your business, ",
@@ -196,6 +206,13 @@ const COPY = {
     contactSub:
       "Tell me what eats your time every day. If a small app can fix it, I'll build that app.",
     footerFamily: "part of the duckduck family",
+    armory: {
+      kicker: "The Armory · a year of building",
+      title: "52 small builds in a year",
+      blurb: `Beyond client work, a personal playground — ${ARMORY_BUILT} of ${ARMORY_TOTAL} tiny projects shipped in a year, ${ARMORY_TOTAL - ARMORY_BUILT} more on the way`,
+      cta: "Enter the full Armory →",
+      soon: "soon",
+    },
   },
 } as const;
 
@@ -327,6 +344,9 @@ export default function Home() {
           <nav className="hidden items-center gap-7 font-bold sm:flex">
             <a href="#work" className="hover:text-beak">
               {t.navWork}
+            </a>
+            <a href="#armory" className="hover:text-beak">
+              {t.navArmory}
             </a>
             <a href="#process" className="hover:text-beak">
               {t.navProcess}
@@ -480,6 +500,77 @@ export default function Home() {
             </a>
             .
           </p>
+        </div>
+      </section>
+
+      {/* ── Armory ─────────────────────────────────────── */}
+      <section id="armory" className="dotgrid border-t-2 border-ink">
+        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+          <p className="font-display text-lg font-semibold text-beak">{t.armory.kicker}</p>
+          <h2 className="mt-2 font-display text-4xl font-semibold sm:text-6xl">
+            {t.armory.title}
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
+            {t.armory.blurb}
+          </p>
+          <a
+            href="https://peerapongsm.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block rounded-2xl border-2 border-ink bg-duck px-6 py-3 font-display text-lg font-semibold shadow-hard transition-transform hover:-translate-y-1"
+          >
+            {t.armory.cta}
+          </a>
+
+          <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {ARMORY.map((p) => {
+              const planned = p.status === "planned";
+              const inner = (
+                <>
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-display text-xs font-extrabold text-ink/40">
+                      {String(p.id).padStart(2, "0")}
+                    </span>
+                    {planned ? (
+                      <span className="rounded-full border border-ink/30 bg-beak/15 px-2 py-0.5 text-[10px] font-extrabold uppercase text-beak">
+                        {t.armory.soon}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-ink/40 transition-colors group-hover:text-beak">
+                        ↗
+                      </span>
+                    )}
+                  </div>
+                  <span className="mt-2 block font-display text-base font-semibold leading-snug">
+                    {p.name}
+                  </span>
+                  {planned && p.note && (
+                    <span className="mt-1 block text-xs leading-snug text-ink/60">
+                      {p.note}
+                    </span>
+                  )}
+                </>
+              );
+              return (
+                <li key={p.id}>
+                  {planned ? (
+                    <div className="h-full rounded-2xl border-2 border-dashed border-ink/25 bg-cream/50 p-4">
+                      {inner}
+                    </div>
+                  ) : (
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block h-full rounded-2xl border-2 border-ink bg-cream p-4 shadow-hard-sm transition-transform hover:-translate-y-1"
+                    >
+                      {inner}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 

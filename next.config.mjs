@@ -1,9 +1,7 @@
-const isProd = process.env.NODE_ENV === "production";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: isProd ? "/duckduckdev" : "",
+  // custom domain duckduckdev.peerapongsm.dev serves from root — no basePath
   images: { unoptimized: true },
 };
 
