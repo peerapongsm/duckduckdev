@@ -73,6 +73,11 @@
     background-color: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-body);
+    /* Thai has no inter-word spaces: never break a Thai word mid-character.
+       keep-all breaks only at real break opportunities (spaces), so a whole
+       Thai word stays on its line or wraps whole. */
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
   ::selection {
     background: var(--color-duck);
