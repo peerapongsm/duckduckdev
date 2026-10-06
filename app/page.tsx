@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { ARMORY, ARMORY_BUILT, ARMORY_TOTAL } from "./armory-data";
+import { useEffect, useRef, useState } from "react";
+import { APPS, downloadUrl, releaseUrl, type DesktopApp } from "./apps-data";
 
 const EMAIL = "contact@peerapongsm.dev";
 
@@ -15,7 +15,6 @@ const COPY = {
   th: {
     badge: "app on demand · สำหรับธุรกิจขนาดเล็ก",
     navWork: "ผลงาน",
-    navArmory: "คลังแสง",
     navProcess: "ขั้นตอน",
     navCta: "เริ่มโปรเจกต์",
     h1Pre: "แอปเล็ก ๆ ที่ทำให้ร้านคุณ ",
@@ -27,42 +26,44 @@ const COPY = {
     heroSecondary: "ดูผลงาน",
     marquee: [
       "รับทำแอปตามสั่ง",
-      "DUCKDUCKDRUG",
-      "สร้างเพื่อธุรกิจขนาดเล็ก",
       "DUCKDUCKWASH",
+      "ทำงานออฟไลน์",
+      "DUCKDUCKSTOCK",
+      "ข้อมูลอยู่ในเครื่องคุณ",
+      "DUCKDUCKFILE",
       "เสร็จเป็นสัปดาห์ ไม่ใช่ไตรมาส",
-      "DUCKDUCKCARE",
-      "ข้อมูลเป็นของคุณ",
-      "PANYA",
+      "DUCKDUCKROOM",
     ],
     workKicker: "ผลงานในบ่อ",
-    workTitle: "ของจริง ใช้งานได้จริง",
-    projects: [
-      {
-        tagline: "ระบบจัดการร้านขายยา หลายสาขา บนคลาวด์",
-        description:
-          "เว็บแอป multi-tenant สำหรับร้านขายยาไทย แต่ละร้านได้ subdomain ของตัวเอง บัญชีพนักงานของตัวเอง และแดชบอร์ดเดียวคุมทั้งร้าน — ตั้งแต่ชั้นวางยาจนถึงใบเสร็จ",
-        chips: ["สต็อกยา", "งานขาย", "จัดซื้อ", "หลายสาขา", "รายงาน"],
-      },
-      {
-        tagline: "แอปจับคู่คนพาผู้สูงอายุไปหาหมอ บนมือถือ",
-        description:
-          "แพลตฟอร์มมือถือ iOS/Android ที่จับคู่ผู้สูงอายุกับผู้ดูแลรับจ้างพาไปโรงพยาบาล จองล่วงหน้าได้ตั้งแต่เป็นชั่วโมงจนถึงเป็นเดือน แจ้งเตือนทั้งสองฝั่งก่อนถึงนัด และจ่ายเงินผ่าน OMISE ครบจบในแอป",
-        chips: ["จองคิว", "จับคู่ผู้ดูแล", "แจ้งเตือน", "จ่ายผ่าน OMISE", "ให้คะแนน"],
-      },
-      {
-        tagline: "AI workspace ภายในองค์กร แบบ air-gapped",
-        description:
-          "พื้นที่ทำงาน AI สำหรับพนักงานองค์กรขนาดใหญ่ รันบนเซิร์ฟเวอร์ตัวเอง ไม่ต่อเน็ตภายนอก ใช้โมเดลโอเพนซอร์สบนเครื่อง — แชต ผู้ช่วยเอเจนต์ และค้นไฟล์ภายใน ออกแบบให้ผ่านมาตรฐานความปลอดภัยและ PDPA",
-        chips: ["แชต AI", "เอเจนต์", "ค้นเอกสาร", "ออนพรีม", "PDPA"],
-      },
-      {
-        tagline: "บอทเทรดอัตโนมัติบน MetaTrader 5",
-        description:
-          "Expert Advisor ภาษา MQL5 ที่เทรดเองบนแพลตฟอร์ม MetaTrader 5 พร้อมระบบจัดการความเสี่ยงต่อไม้ และชุดเครื่องมือ backtest อัตโนมัติสำหรับทดสอบกลยุทธ์กับข้อมูลย้อนหลังหลายปี",
-        chips: ["MQL5 EA", "จัดการความเสี่ยง", "Backtest", "หลาย TF", "MT5"],
-      },
-    ],
+    workTitle: "แอปเดสก์ท็อปฟรี โหลดไปใช้ได้เลย",
+    workSub:
+      "ทุกตัวทำงานออฟไลน์ ข้อมูลอยู่ในเครื่องคุณ ไม่ส่งขึ้นเน็ต กดที่การ์ดเพื่อดูรายละเอียดและดาวน์โหลด",
+    winOnly:
+      "ใช้ได้เฉพาะ Windows 10/11 (64-bit) บนคอมพิวเตอร์เท่านั้น ยังไม่มีเวอร์ชัน Mac มือถือ และแท็บเล็ต",
+    cardHint: "ดูรายละเอียดและดาวน์โหลด →",
+    uiLang: { th: "แอปภาษาไทย", en: "แอปภาษาอังกฤษ" },
+    armory: {
+      tagline: "52 โปรเจกต์ในหนึ่งปี",
+      description:
+        "สนามทดลองส่วนตัว เว็บแอป เกม และเครื่องมือเล็ก ๆ ที่ลงมือทำทีละตัวตลอดหนึ่งปี ส่วนใหญ่เปิดเล่นบนเบราว์เซอร์ได้เลย",
+      chips: ["เว็บแอป", "เกม", "เครื่องมือ"],
+      hint: "เข้าคลังแสง ↗",
+    },
+    dl: {
+      button: "ดาวน์โหลดตัวติดตั้ง (.exe)",
+      version: "เวอร์ชัน",
+      size: "ขนาด",
+      warnTitle: "ถ้า Windows หรือเบราว์เซอร์เตือน",
+      warnBody:
+        "ตัวติดตั้งยังไม่มีลายเซ็นดิจิทัล (code signing) เลยอาจมีคำเตือนตอนดาวน์โหลดหรือตอนเปิดไฟล์ ไฟล์โหลดตรงจาก GitHub Releases ของเรา เช็กค่า SHA-256 ด้านล่างได้",
+      steps: [
+        "Chrome หรือ Edge บอกว่าไฟล์ไม่ค่อยมีคนโหลด ให้กด ⋯ ข้างไฟล์ แล้วเลือก Keep หรือ Keep anyway",
+        "ขึ้นหน้าจอสีน้ำเงิน Windows protected your PC ให้กด More info แล้วกด Run anyway",
+      ],
+      sha: "ค่า SHA-256 สำหรับเช็กไฟล์",
+      release: "ดูหน้า release บน GitHub ↗",
+      close: "ปิด",
+    },
     pondCtaPre: "ร้านของคุณอาจเป็นเป็ดตัวถัดไปในบ่อ ",
     pondCtaLink: "ทักมาคุยกัน",
     processKicker: "ขั้นตอนการทำงาน",
@@ -87,19 +88,10 @@ const COPY = {
     contactSub:
       "เล่าให้ฟังว่าอะไรกินเวลาคุณทุกวัน ถ้าแอปเล็ก ๆ แก้ได้ เราจะสร้างแอปนั้นให้",
     footerFamily: "หนึ่งในครอบครัว duckduck",
-    armory: {
-      kicker: "The Armory · คลังแสง",
-      title: "ปีแห่งการสร้าง 52 โปรเจกต์",
-      blurb: `นอกจากงานลูกค้า ยังมีสนามทดลองส่วนตัว — ${ARMORY_BUILT} จาก ${ARMORY_TOTAL} โปรเจกต์เล็ก ๆ ที่ลงมือทำในหนึ่งปี อีก ${ARMORY_TOTAL - ARMORY_BUILT} กำลังจะมา`,
-      cta: "เข้าคลังแสงทั้งหมด →",
-      soon: "เร็ว ๆ นี้",
-      building: "กำลังสร้าง",
-    },
   },
   en: {
     badge: "app on demand · for small business",
     navWork: "Work",
-    navArmory: "Armory",
     navProcess: "Process",
     navCta: "Start a project",
     h1Pre: "Your business, ",
@@ -111,42 +103,44 @@ const COPY = {
     heroSecondary: "See the work",
     marquee: [
       "APP ON DEMAND",
-      "DUCKDUCKDRUG",
-      "BUILT FOR SMALL BUSINESS",
       "DUCKDUCKWASH",
+      "WORKS OFFLINE",
+      "DUCKDUCKSTOCK",
+      "YOUR DATA STAYS ON YOUR PC",
+      "DUCKDUCKFILE",
       "WEEKS, NOT QUARTERS",
-      "DUCKDUCKCARE",
-      "YOUR DATA STAYS YOURS",
-      "PANYA",
+      "DUCKDUCKROOM",
     ],
     workKicker: "The pond so far",
-    workTitle: "Real apps, real users.",
-    projects: [
-      {
-        tagline: "Drugstore management, multi-store, in the cloud.",
-        description:
-          "A multi-tenant web app for Thai drugstores. Every shop gets its own subdomain, its own staff accounts, and one dashboard for the whole operation — from the shelf to the receipt.",
-        chips: ["Inventory", "Sales", "Purchasing", "Multi-branch", "Reports"],
-      },
-      {
-        tagline: "A mobile marketplace that gets elderly people to their appointments.",
-        description:
-          "An iOS and Android app that matches elderly people with paid caretakers who escort them to hospital visits. Book hours or months ahead, reminders for both sides, and in-app payment through OMISE.",
-        chips: ["Booking", "Caretaker match", "Reminders", "OMISE pay", "Ratings"],
-      },
-      {
-        tagline: "An air-gapped internal AI workspace for a large institution.",
-        description:
-          "A self-hosted AI workspace for thousands of staff, running on-prem with open-source models and no external calls. Chat, an agent assistant, and internal document search — designed to clear strict security and PDPA requirements.",
-        chips: ["AI chat", "Agent", "Doc search", "On-prem", "PDPA"],
-      },
-      {
-        tagline: "An automated trading bot for MetaTrader 5.",
-        description:
-          "An MQL5 Expert Advisor that trades on its own on MetaTrader 5, with per-trade risk sizing and an automated backtesting harness to test strategies against years of historical data.",
-        chips: ["MQL5 EA", "Risk sizing", "Backtest", "Multi-TF", "MT5"],
-      },
-    ],
+    workTitle: "Free desktop apps. Download and go.",
+    workSub:
+      "Every app works offline — your data stays on your PC and never goes online. Tap a card for details and the download.",
+    winOnly:
+      "Windows desktop only — Windows 10/11 (64-bit). No Mac, phone or tablet versions yet.",
+    cardHint: "Details & download →",
+    uiLang: { th: "Thai UI", en: "English UI" },
+    armory: {
+      tagline: "52 small builds in a year.",
+      description:
+        "A personal playground — web apps, games and little tools, built one at a time over a year. Most run right in your browser.",
+      chips: ["Web apps", "Games", "Tools"],
+      hint: "Enter the Armory ↗",
+    },
+    dl: {
+      button: "Download installer (.exe)",
+      version: "Version",
+      size: "Size",
+      warnTitle: "If Windows or your browser warns you",
+      warnBody:
+        "The installers aren't code-signed yet, so you may see a warning when downloading or opening the file. It downloads straight from our GitHub Releases — check the SHA-256 below if you like.",
+      steps: [
+        "Chrome or Edge says the file isn't commonly downloaded: click ⋯ next to it and choose Keep, or Keep anyway.",
+        "A blue “Windows protected your PC” screen: click More info, then Run anyway.",
+      ],
+      sha: "SHA-256 checksum",
+      release: "View the release on GitHub ↗",
+      close: "Close",
+    },
     pondCtaPre: "Your shop could be the next duck in the pond. ",
     pondCtaLink: "Say hello",
     processKicker: "How it works",
@@ -171,47 +165,11 @@ const COPY = {
     contactSub:
       "Tell me what eats your time every day. If a small app can fix it, I'll build that app.",
     footerFamily: "part of the duckduck family",
-    armory: {
-      kicker: "The Armory · a year of building",
-      title: "52 small builds in a year",
-      blurb: `Beyond client work, a personal playground — ${ARMORY_BUILT} of ${ARMORY_TOTAL} tiny projects shipped in a year, ${ARMORY_TOTAL - ARMORY_BUILT} more on the way`,
-      cta: "Enter the full Armory →",
-      soon: "soon",
-      building: "building",
-    },
   },
 } as const;
 
-const PROJECT_META = [
-  {
-    name: "DuckDuckDrug",
-    icon: `${BASE_PATH}/duckduckdrug.png`,
-    emoji: "",
-    stack: "Web SaaS · Next.js + MongoDB",
-    accent: "bg-mint",
-  },
-  {
-    name: "DuckDuckCare",
-    icon: "",
-    emoji: "🩺",
-    stack: "Mobile · React Native + Supabase",
-    accent: "bg-beak",
-  },
-  {
-    name: "Panya",
-    icon: "",
-    emoji: "🧠",
-    stack: "Enterprise · .NET 10 + Semantic Kernel",
-    accent: "bg-wash",
-  },
-  {
-    name: "DuckDuckTrade",
-    icon: "",
-    emoji: "📈",
-    stack: "Algo trading · MQL5 / MT5",
-    accent: "bg-duck",
-  },
-];
+const CARD =
+  "group flex h-full w-full flex-col items-start rounded-3xl border-2 border-ink bg-cream p-6 text-left shadow-hard transition-transform hover:-translate-y-1.5 hover:rotate-[0.4deg] sm:p-7";
 
 const STEP_META = [
   { n: "01", accent: "bg-duck" },
@@ -272,6 +230,14 @@ function LangSwitcher({
 export default function Home() {
   const [lang, setLang] = useState<Lang>("th");
   const t = COPY[lang];
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [openAppName, setOpenAppName] = useState<string | null>(null);
+  const app = APPS.find((a) => a.name === openAppName);
+
+  function openApp(a: DesktopApp) {
+    setOpenAppName(a.name);
+    dialogRef.current?.showModal();
+  }
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -289,9 +255,6 @@ export default function Home() {
           <nav className="hidden items-center gap-7 font-bold sm:flex">
             <a href="#work" className="hover:text-beak">
               {t.navWork}
-            </a>
-            <a href="#armory" className="hover:text-beak">
-              {t.navArmory}
             </a>
             <a href="#process" className="hover:text-beak">
               {t.navProcess}
@@ -377,63 +340,80 @@ export default function Home() {
           <h2 className="mt-2 font-display text-4xl font-semibold sm:text-6xl">
             {t.workTitle}
           </h2>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">{t.workSub}</p>
+          <p className="mt-5 inline-flex items-start gap-2 rounded-2xl border-2 border-ink bg-duck px-4 py-2.5 font-bold shadow-hard-sm">
+            <span aria-hidden="true">🪟</span>
+            {t.winOnly}
+          </p>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            {PROJECT_META.map((p, i) => {
-              const c = t.projects[i];
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {APPS.map((a) => {
+              const c = a[lang];
               return (
-                <article
-                  key={p.name}
-                  className={`group rounded-3xl border-2 border-ink bg-cream p-7 shadow-hard transition-transform hover:-translate-y-1.5 hover:rotate-[0.4deg] sm:p-9 ${
-                    i % 2 === 1 ? "lg:translate-y-10" : ""
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div
-                      className={`size-20 overflow-hidden rounded-2xl border-2 border-ink ${p.accent} shadow-hard-sm transition-transform group-hover:rotate-[-4deg]`}
-                    >
-                      {p.icon ? (
-                        <Image
-                          src={p.icon}
-                          alt={`${p.name} logo`}
-                          width={160}
-                          height={160}
-                          className="size-full object-cover"
-                        />
-                      ) : (
-                        <span
-                          aria-hidden="true"
-                          className="grid size-full place-items-center text-4xl"
-                        >
-                          {p.emoji}
-                        </span>
-                      )}
+                <li key={a.name}>
+                  <button
+                    type="button"
+                    onClick={() => openApp(a)}
+                    aria-haspopup="dialog"
+                    className={CARD}
+                  >
+                    <div className="flex w-full items-start justify-between gap-3">
+                      <Image
+                        src={`${BASE_PATH}${a.icon}`}
+                        alt=""
+                        width={96}
+                        height={96}
+                        className={`size-16 rounded-2xl border-2 border-ink ${a.accent} shadow-hard-sm transition-transform group-hover:rotate-[-4deg]`}
+                      />
+                      <span className="rounded-full border-2 border-ink bg-cream px-2.5 py-0.5 text-xs font-extrabold">
+                        Windows · v{a.version}
+                      </span>
                     </div>
-                    <span className="rounded-full border-2 border-ink bg-cream px-3 py-1 text-xs font-extrabold uppercase tracking-wide">
-                      {p.stack}
+                    <h3 className="mt-5 font-display text-2xl font-semibold">{a.name}</h3>
+                    <p className="mt-1 font-display text-lg text-ink/70">{c.tagline}</p>
+                    <ul className="mt-4 flex flex-wrap gap-1.5">
+                      {c.chips.map((chip) => (
+                        <li key={chip} className="rounded-full bg-ink/8 px-2.5 py-0.5 text-sm font-extrabold">
+                          {chip}
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="mt-auto pt-5 font-display font-semibold text-beak">
+                      {t.cardHint}
                     </span>
-                  </div>
-
-                  <h3 className="mt-6 font-display text-3xl font-semibold">{p.name}</h3>
-                  <p className="mt-1 font-display text-xl text-ink/70">{c.tagline}</p>
-                  <p className="mt-4 leading-relaxed text-ink/80">
-                    {c.description}
-                  </p>
-
-                  <ul className="mt-6 flex flex-wrap gap-2">
-                    {c.chips.map((chip) => (
-                      <li
-                        key={chip}
-                        className="rounded-full bg-ink/8 px-3 py-1 text-sm font-extrabold"
-                      >
-                        {chip}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+                  </button>
+                </li>
               );
             })}
-          </div>
+            <li>
+              <a
+                href="https://peerapongsm.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${CARD} dotgrid`}
+              >
+                <span
+                  aria-hidden="true"
+                  className="grid size-16 place-items-center rounded-2xl border-2 border-ink bg-beak text-3xl shadow-hard-sm transition-transform group-hover:rotate-[-4deg]"
+                >
+                  🛡️
+                </span>
+                <h3 className="mt-5 font-display text-2xl font-semibold">The Armory</h3>
+                <p className="mt-1 font-display text-lg text-ink/70">{t.armory.tagline}</p>
+                <p className="mt-3 leading-relaxed text-ink/80">{t.armory.description}</p>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {t.armory.chips.map((chip) => (
+                    <li key={chip} className="rounded-full bg-ink/8 px-2.5 py-0.5 text-sm font-extrabold">
+                      {chip}
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-auto pt-5 font-display font-semibold text-beak">
+                  {t.armory.hint}
+                </span>
+              </a>
+            </li>
+          </ul>
 
           <p className="mt-20 max-w-2xl font-display text-2xl font-medium text-ink/60 lg:mt-24">
             {t.pondCtaPre}
@@ -445,90 +425,6 @@ export default function Home() {
             </a>
             .
           </p>
-        </div>
-      </section>
-
-      {/* ── Armory ─────────────────────────────────────── */}
-      <section id="armory" className="dotgrid border-t-2 border-ink">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-          <p className="font-display text-lg font-semibold text-beak">{t.armory.kicker}</p>
-          <h2 className="mt-2 font-display text-4xl font-semibold sm:text-6xl">
-            {t.armory.title}
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/80">
-            {t.armory.blurb}
-          </p>
-          <a
-            href="https://peerapongsm.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-block rounded-2xl border-2 border-ink bg-duck px-6 py-3 font-display text-lg font-semibold shadow-hard transition-transform hover:-translate-y-1"
-          >
-            {t.armory.cta}
-          </a>
-
-          <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {ARMORY.map((p) => {
-              const built = p.status === "built";
-              const badge =
-                p.status === "building" ? t.armory.building : t.armory.soon;
-              const accent = ["bg-duck", "bg-beak", "bg-wash", "bg-mint"][
-                p.id % 4
-              ];
-              const inner = (
-                <>
-                  <div className="flex items-start justify-between gap-2">
-                    <span
-                      className={`grid size-9 shrink-0 place-items-center rounded-xl border-2 border-ink ${accent} text-lg shadow-hard-sm`}
-                    >
-                      {p.emoji}
-                    </span>
-                    {built ? (
-                      <span className="text-xs text-ink/40 transition-colors group-hover:text-beak">
-                        ↗
-                      </span>
-                    ) : (
-                      <span
-                        className={`rounded-full border border-ink/30 px-2 py-0.5 text-[10px] font-extrabold uppercase ${
-                          p.status === "building"
-                            ? "bg-mint/25 text-ink/70"
-                            : "bg-beak/15 text-beak"
-                        }`}
-                      >
-                        {badge}
-                      </span>
-                    )}
-                  </div>
-                  <span className="mt-2 block font-display text-base font-semibold leading-snug">
-                    {p.name}
-                  </span>
-                  {p.note && (
-                    <span className="mt-1 block text-xs leading-snug text-ink/60">
-                      {p.note}
-                    </span>
-                  )}
-                </>
-              );
-              return (
-                <li key={p.id}>
-                  {built ? (
-                    <a
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block h-full rounded-2xl border-2 border-ink bg-cream p-4 shadow-hard-sm transition-transform hover:-translate-y-1"
-                    >
-                      {inner}
-                    </a>
-                  ) : (
-                    <div className="h-full rounded-2xl border-2 border-dashed border-ink/25 bg-cream/50 p-4">
-                      {inner}
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </section>
 
@@ -592,6 +488,95 @@ export default function Home() {
           </footer>
         </div>
       </section>
+      {/* ── Download dialog ────────────────────────────── */}
+      {/* Native <dialog>, not a window.open popup, so popup blockers never fire.
+          Download is a plain user-clicked HTTPS link to the GitHub Release asset —
+          no script-initiated or iframe downloads, which browsers block. */}
+      <dialog
+        ref={dialogRef}
+        onClose={() => setOpenAppName(null)}
+        onClick={(e) => e.target === e.currentTarget && dialogRef.current?.close()}
+        aria-labelledby="dl-title"
+        className="m-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-3xl border-2 border-ink bg-cream text-ink shadow-hard sm:shadow-hard-lg backdrop:bg-ink/60"
+      >
+        {app && (
+          <div className="p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <Image
+                src={`${BASE_PATH}${app.icon}`}
+                alt=""
+                width={96}
+                height={96}
+                className={`size-16 shrink-0 rounded-2xl border-2 border-ink ${app.accent} shadow-hard-sm`}
+              />
+              <div className="min-w-0">
+                <h2 id="dl-title" className="break-words font-display text-2xl font-semibold sm:text-3xl">
+                  {app.name}
+                </h2>
+                <p className="font-display text-lg text-ink/70">{app[lang].tagline}</p>
+              </div>
+            </div>
+
+            <p className="mt-5 leading-relaxed text-ink/80">{app[lang].description}</p>
+
+            <dl className="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm font-bold text-ink/70">
+              <div>
+                <dt className="inline">{t.dl.version}: </dt>
+                <dd className="inline">{app.version}</dd>
+              </div>
+              <div>
+                <dt className="inline">{t.dl.size}: </dt>
+                <dd className="inline">{Math.round(app.size / 1048576)} MB</dd>
+              </div>
+              <div>{t.uiLang[app.uiLang]}</div>
+            </dl>
+
+            <p className="mt-5 flex items-start gap-2 rounded-2xl border-2 border-ink bg-duck px-4 py-2.5 text-sm font-bold">
+              <span aria-hidden="true">🪟</span>
+              {t.winOnly}
+            </p>
+
+            <a
+              href={downloadUrl(app)}
+              className="mt-5 block rounded-2xl border-2 border-ink bg-ink px-6 py-4 text-center font-display text-lg font-semibold text-duck shadow-hard transition-transform hover:-translate-y-1"
+            >
+              ⬇ {t.dl.button}
+            </a>
+
+            <div className="mt-6 rounded-2xl border-2 border-dashed border-ink/30 p-4 text-sm leading-relaxed">
+              <p className="font-display text-base font-semibold">{t.dl.warnTitle}</p>
+              <p className="mt-1 text-ink/80">{t.dl.warnBody}</p>
+              <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-ink/80">
+                {t.dl.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              <p className="mt-3 font-bold">{t.dl.sha}</p>
+              <code className="mt-1 block break-all rounded-lg bg-ink/8 px-2 py-1 font-mono text-xs">
+                {app.sha256}
+              </code>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+              <a
+                href={releaseUrl(app)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-beak underline decoration-2 underline-offset-4"
+              >
+                {t.dl.release}
+              </a>
+              <button
+                type="button"
+                onClick={() => dialogRef.current?.close()}
+                className="rounded-full border-2 border-ink bg-cream px-5 py-2 font-display font-semibold shadow-hard-sm"
+              >
+                {t.dl.close}
+              </button>
+            </div>
+          </div>
+        )}
+      </dialog>
     </main>
   );
 }
