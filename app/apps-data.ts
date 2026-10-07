@@ -1,17 +1,11 @@
-// Windows desktop apps from ../electron. Installers are served from each app's
-// public GitHub Release (HTTPS, versioned asset URL). sha256/size copied from the
-// release asset metadata — update all three fields together on a new release:
-//   gh api repos/peerapongsm/<repo>/releases/latest -q '.assets[]|select(.name|endswith(".exe"))|[.name,.size,.digest]'
+// Windows desktop apps from ../electron, installed through the Microsoft Store
+// (Store-signed, Store-updated). storeId = Partner Center → Product identity → Store ID.
 
 type Copy = { tagline: string; description: string; chips: string[] };
 
 export type DesktopApp = {
   name: string;
-  repo: string;
-  version: string;
-  file: string;
-  size: number;
-  sha256: string;
+  storeId: string;
   icon: string;
   accent: string;
   uiLang: "th" | "en";
@@ -19,19 +13,12 @@ export type DesktopApp = {
   en: Copy;
 };
 
-export const releaseUrl = (a: DesktopApp) =>
-  `https://github.com/peerapongsm/${a.repo}/releases/tag/v${a.version}`;
-export const downloadUrl = (a: DesktopApp) =>
-  `https://github.com/peerapongsm/${a.repo}/releases/download/v${a.version}/${a.file}`;
+export const storeUrl = (a: DesktopApp) => `https://apps.microsoft.com/detail/${a.storeId}`;
 
 export const APPS: DesktopApp[] = [
   {
     name: "DuckDuckWash",
-    repo: "duckduckwash",
-    version: "1.2.3",
-    file: "DuckDuckWash-Setup-1.2.3.exe",
-    size: 106796859,
-    sha256: "754e0ba30aeb0d6e492422543c6a646697b7c3155d5f1af10070b9bc64312d35",
+    storeId: "9P7XDJ6VVFKX",
     icon: "/apps/wash.png",
     accent: "bg-wash",
     uiLang: "en",
@@ -50,11 +37,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckStock",
-    repo: "duckduckstock",
-    version: "1.0.1",
-    file: "DuckDuckStock-Setup-1.0.1.exe",
-    size: 102623026,
-    sha256: "d5e37705d35162ff105047f2e1a85f8545479d07fac5e229ee44df0c18901615",
+    storeId: "9NBP8MC66BHL",
     icon: "/apps/stock.png",
     accent: "bg-mint",
     uiLang: "th",
@@ -73,11 +56,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckFile",
-    repo: "duckduckfile",
-    version: "1.0.1",
-    file: "DuckDuckFile-Setup-1.0.1.exe",
-    size: 105774772,
-    sha256: "d9b5e4c3c81f04b9ea67c436164df2ed768c7b26b1c3b0b30ff7df5cf268e35b",
+    storeId: "9P0B60DD1R1T",
     icon: "/apps/file.png",
     accent: "bg-duck",
     uiLang: "th",
@@ -96,11 +75,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckPay",
-    repo: "duckduckpay",
-    version: "1.0.2",
-    file: "DuckDuckPay-Setup-1.0.2.exe",
-    size: 104022057,
-    sha256: "ffd2d622fe9ce40735407dc8231cb85df692a2f0a1117b20e1d693ac5849d18e",
+    storeId: "9NJ7D2DGW0N9",
     icon: "/apps/pay.png",
     accent: "bg-beak",
     uiLang: "th",
@@ -119,11 +94,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckGarage",
-    repo: "duckduckgarage",
-    version: "1.0.2",
-    file: "DuckDuckGarage-Setup-1.0.2.exe",
-    size: 100190672,
-    sha256: "24d6c505a6cb5e7c506d86932af919bfe34c59804118a4353164fd8c36c57df5",
+    storeId: "9PJNBK1GH3QM",
     icon: "/apps/garage.png",
     accent: "bg-wash",
     uiLang: "th",
@@ -142,11 +113,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckRoom",
-    repo: "duckduckroom",
-    version: "1.0.1",
-    file: "DuckDuckRoom-Setup-1.0.1.exe",
-    size: 100935649,
-    sha256: "795540df2b5a8ba8c06e19980dabd77bd7c35b01d7d94f30e2bdda61b644f6a1",
+    storeId: "9PJ54BQ005TN",
     icon: "/apps/room.png",
     accent: "bg-mint",
     uiLang: "th",
@@ -165,11 +132,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckClass",
-    repo: "duckduckclass",
-    version: "1.0.1",
-    file: "DuckDuckClass-Setup-1.0.1.exe",
-    size: 105902200,
-    sha256: "bed5bf76ed554c71bccc3db4f44eb0fdab5703e85158be5b26a8c32afc3ed7e5",
+    storeId: "9PNWRCP264L0",
     icon: "/apps/class.png",
     accent: "bg-duck",
     uiLang: "th",
@@ -188,11 +151,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckCRM",
-    repo: "duckduckcrm",
-    version: "1.0.1",
-    file: "DuckDuckCRM-Setup-1.0.1.exe",
-    size: 104507003,
-    sha256: "82480c55f2f7558458f22378efa4eedec835bddfc7b33efeef38d10d6b237420",
+    storeId: "9NLP107NZFKD",
     icon: "/apps/crm.png",
     accent: "bg-beak",
     uiLang: "th",
@@ -211,11 +170,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckCampaign",
-    repo: "duckduckcampaign",
-    version: "1.0.1",
-    file: "DuckDuckCampaign-Setup-1.0.1.exe",
-    size: 106041699,
-    sha256: "13e163eef72babd4f2a37378b1495824aa62f8b2efadbb32dce632bc8c87e48b",
+    storeId: "9NTLB1X4G8WB",
     icon: "/apps/campaign.png",
     accent: "bg-wash",
     uiLang: "th",
@@ -234,25 +189,40 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "DuckDuckPlan",
-    repo: "duckduckplan",
-    version: "1.0.0",
-    file: "DuckDuckPlan.Setup.1.0.0.exe",
-    size: 94871015,
-    sha256: "fb2a05ec0fca02000352b7d26bc6b986a1c82f04850881ca472df3f4efc0f331",
+    storeId: "9MXCDQ3RN6Z7",
     icon: "/apps/plan.png",
     accent: "bg-mint",
-    uiLang: "en",
+    uiLang: "th",
     th: {
-      tagline: "วางแผนโปรเจกต์และงานส่วนตัว",
+      tagline: "วางแผนโปรเจกต์และงาน",
       description:
-        "รวมงานทุกโปรเจกต์ไว้ที่เดียว ดูได้ทั้งแบบลิสต์ บอร์ด ปฏิทิน และ Gantt จับเวลาทำงานและเขียนเอกสารประกอบได้ในตัวด้วย",
-      chips: ["ลิสต์", "บอร์ด", "Gantt", "จับเวลา", "เอกสาร"],
+        "รวมงานทุกโปรเจกต์ไว้ที่เดียว ดูได้ทั้งลิสต์ บอร์ด ปฏิทิน และไทม์ไลน์ มีสปรินต์ เป้าหมาย บันทึกเวลา และพิมพ์รายงานเป็น PDF ข้อมูลเข้ารหัสไว้ในเครื่อง",
+      chips: ["บอร์ด", "ไทม์ไลน์", "สปรินต์", "เป้าหมาย", "บันทึกเวลา"],
     },
     en: {
-      tagline: "Personal project and task planner.",
+      tagline: "Project and task planner.",
       description:
-        "Every project in one place, as a list, board, calendar or Gantt chart — with a built-in time tracker and docs.",
-      chips: ["List", "Board", "Gantt", "Time tracking", "Docs"],
+        "Every project in one place — list, board, calendar or timeline — with sprints, goals, time tracking and PDF reports. Data is encrypted on your PC.",
+      chips: ["Board", "Timeline", "Sprints", "Goals", "Time tracking"],
+    },
+  },
+  {
+    name: "DuckDuckBCP",
+    storeId: "9NK6TZPJC8LS",
+    icon: "/apps/bcp.png",
+    accent: "bg-beak",
+    uiLang: "th",
+    th: {
+      tagline: "แผนฉุกเฉินและแผนธุรกิจต่อเนื่อง",
+      description:
+        "ช่วยธุรกิจเล็กเขียนแผนรับมือเหตุฉุกเฉิน ประเมินความเสี่ยง เตรียมรายชื่อผู้ติดต่อ ซ้อมแผน และใช้ตอนเกิดเหตุจริง พิมพ์แผน บัตรพกพา และโปสเตอร์ได้",
+      chips: ["ความเสี่ยง", "ผู้ติดต่อ", "ซ้อมแผน", "โหมดเกิดเหตุ"],
+    },
+    en: {
+      tagline: "Emergency and business continuity plan.",
+      description:
+        "Helps a small business write its emergency plan: assess risks, list contacts, run drills and use it when something actually happens. Prints the plan, wallet cards and a poster.",
+      chips: ["Risks", "Contacts", "Drills", "Incident mode"],
     },
   },
 ];

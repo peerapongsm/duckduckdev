@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { APPS, downloadUrl, releaseUrl, type DesktopApp } from "./apps-data";
+import { APPS, storeUrl, type DesktopApp } from "./apps-data";
 
 const EMAIL = "contact@peerapongsm.dev";
 
@@ -50,18 +50,8 @@ const COPY = {
       hint: "เข้าคลังแสง ↗",
     },
     dl: {
-      button: "ดาวน์โหลดตัวติดตั้ง (.exe)",
-      version: "เวอร์ชัน",
-      size: "ขนาด",
-      warnTitle: "ถ้า Windows หรือเบราว์เซอร์เตือน",
-      warnBody:
-        "ตัวติดตั้งยังไม่มีลายเซ็นดิจิทัล (code signing) เลยอาจมีคำเตือนตอนดาวน์โหลดหรือตอนเปิดไฟล์ ไฟล์โหลดตรงจาก GitHub Releases ของเรา เช็กค่า SHA-256 ด้านล่างได้",
-      steps: [
-        "Chrome หรือ Edge บอกว่าไฟล์ไม่ค่อยมีคนโหลด ให้กด ⋯ ข้างไฟล์ แล้วเลือก Keep หรือ Keep anyway",
-        "ขึ้นหน้าจอสีน้ำเงิน Windows protected your PC ให้กด More info แล้วกด Run anyway",
-      ],
-      sha: "ค่า SHA-256 สำหรับเช็กไฟล์",
-      release: "ดูหน้า release บน GitHub ↗",
+      button: "ติดตั้งจาก Microsoft Store",
+      note: "ติดตั้งและอัปเดตผ่าน Microsoft Store ฟรี ไม่ต้องสมัครสมาชิก",
       close: "ปิด",
     },
     pondCtaPre: "ร้านของคุณอาจเป็นเป็ดตัวถัดไปในบ่อ ",
@@ -127,18 +117,8 @@ const COPY = {
       hint: "Enter the Armory ↗",
     },
     dl: {
-      button: "Download installer (.exe)",
-      version: "Version",
-      size: "Size",
-      warnTitle: "If Windows or your browser warns you",
-      warnBody:
-        "The installers aren't code-signed yet, so you may see a warning when downloading or opening the file. It downloads straight from our GitHub Releases — check the SHA-256 below if you like.",
-      steps: [
-        "Chrome or Edge says the file isn't commonly downloaded: click ⋯ next to it and choose Keep, or Keep anyway.",
-        "A blue “Windows protected your PC” screen: click More info, then Run anyway.",
-      ],
-      sha: "SHA-256 checksum",
-      release: "View the release on GitHub ↗",
+      button: "Get it from Microsoft Store",
+      note: "Installs and updates through the Microsoft Store. Free, no account needed.",
       close: "Close",
     },
     pondCtaPre: "Your shop could be the next duck in the pond. ",
@@ -366,7 +346,7 @@ export default function Home() {
                         className={`size-16 rounded-2xl border-2 border-ink ${a.accent} shadow-hard-sm transition-transform group-hover:rotate-[-4deg]`}
                       />
                       <span className="rounded-full border-2 border-ink bg-cream px-2.5 py-0.5 text-xs font-extrabold">
-                        Windows · v{a.version}
+                        Windows
                       </span>
                     </div>
                     <h3 className="mt-5 font-display text-2xl font-semibold">{a.name}</h3>
@@ -490,8 +470,7 @@ export default function Home() {
       </section>
       {/* ── Download dialog ────────────────────────────── */}
       {/* Native <dialog>, not a window.open popup, so popup blockers never fire.
-          Download is a plain user-clicked HTTPS link to the GitHub Release asset —
-          no script-initiated or iframe downloads, which browsers block. */}
+          Install button is a plain link to the app's Microsoft Store page. */}
       <dialog
         ref={dialogRef}
         onClose={() => setOpenAppName(null)}
@@ -519,17 +498,7 @@ export default function Home() {
 
             <p className="mt-5 leading-relaxed text-ink/80">{app[lang].description}</p>
 
-            <dl className="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm font-bold text-ink/70">
-              <div>
-                <dt className="inline">{t.dl.version}: </dt>
-                <dd className="inline">{app.version}</dd>
-              </div>
-              <div>
-                <dt className="inline">{t.dl.size}: </dt>
-                <dd className="inline">{Math.round(app.size / 1048576)} MB</dd>
-              </div>
-              <div>{t.uiLang[app.uiLang]}</div>
-            </dl>
+            <p className="mt-5 text-sm font-bold text-ink/70">{t.uiLang[app.uiLang]}</p>
 
             <p className="mt-5 flex items-start gap-2 rounded-2xl border-2 border-ink bg-duck px-4 py-2.5 text-sm font-bold">
               <span aria-hidden="true">🪟</span>
@@ -537,35 +506,16 @@ export default function Home() {
             </p>
 
             <a
-              href={downloadUrl(app)}
+              href={storeUrl(app)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-5 block rounded-2xl border-2 border-ink bg-ink px-6 py-4 text-center font-display text-lg font-semibold text-duck shadow-hard transition-transform hover:-translate-y-1"
             >
-              ⬇ {t.dl.button}
+              {t.dl.button} ↗
             </a>
 
-            <div className="mt-6 rounded-2xl border-2 border-dashed border-ink/30 p-4 text-sm leading-relaxed">
-              <p className="font-display text-base font-semibold">{t.dl.warnTitle}</p>
-              <p className="mt-1 text-ink/80">{t.dl.warnBody}</p>
-              <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-ink/80">
-                {t.dl.steps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
-              <p className="mt-3 font-bold">{t.dl.sha}</p>
-              <code className="mt-1 block break-all rounded-lg bg-ink/8 px-2 py-1 font-mono text-xs">
-                {app.sha256}
-              </code>
-            </div>
-
             <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-              <a
-                href={releaseUrl(app)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-beak underline decoration-2 underline-offset-4"
-              >
-                {t.dl.release}
-              </a>
+              <p className="text-sm text-ink/70">{t.dl.note}</p>
               <button
                 type="button"
                 onClick={() => dialogRef.current?.close()}
