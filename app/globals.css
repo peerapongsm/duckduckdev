@@ -79,6 +79,11 @@
     word-break: keep-all;
     overflow-wrap: normal;
   }
+  /* Tailwind v4 dropped the pointer cursor on buttons; bring it back. */
+  button:not(:disabled),
+  [role="button"] {
+    cursor: pointer;
+  }
   ::selection {
     background: var(--color-duck);
     color: var(--color-ink);
