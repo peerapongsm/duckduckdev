@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { APPS, storeUrl, type DesktopApp } from "./apps-data";
+import { APPS, STORE_LIVE, storeUrl, type DesktopApp } from "./apps-data";
 
 const EMAIL = "contact@peerapongsm.dev";
 
@@ -51,6 +51,7 @@ const COPY = {
     },
     dl: {
       button: "ติดตั้งจาก Microsoft Store",
+      soon: "เร็ว ๆ นี้บน Microsoft Store",
       note: "ติดตั้งและอัปเดตผ่าน Microsoft Store ฟรี ไม่ต้องสมัครสมาชิก",
       close: "ปิด",
     },
@@ -118,6 +119,7 @@ const COPY = {
     },
     dl: {
       button: "Get it from Microsoft Store",
+      soon: "Coming soon to Microsoft Store",
       note: "Installs and updates through the Microsoft Store. Free, no account needed.",
       close: "Close",
     },
@@ -505,14 +507,20 @@ export default function Home() {
               {t.winOnly}
             </p>
 
-            <a
-              href={storeUrl(app)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 block rounded-2xl border-2 border-ink bg-ink px-6 py-4 text-center font-display text-lg font-semibold text-duck shadow-hard transition-transform hover:-translate-y-1"
-            >
-              {t.dl.button} ↗
-            </a>
+            {STORE_LIVE ? (
+              <a
+                href={storeUrl(app)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 block rounded-2xl border-2 border-ink bg-ink px-6 py-4 text-center font-display text-lg font-semibold text-duck shadow-hard transition-transform hover:-translate-y-1"
+              >
+                {t.dl.button} ↗
+              </a>
+            ) : (
+              <p className="mt-5 block rounded-2xl border-2 border-dashed border-ink/40 px-6 py-4 text-center font-display text-lg font-semibold text-ink/60">
+                {t.dl.soon}
+              </p>
+            )}
 
             <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-ink/70">{t.dl.note}</p>

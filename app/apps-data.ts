@@ -13,6 +13,9 @@ export type DesktopApp = {
   en: Copy;
 };
 
+// ponytail: flip to true once all 14 apps pass Store certification (detail pages 404 before publish).
+export const STORE_LIVE = false;
+
 export const storeUrl = (a: DesktopApp) => `https://apps.microsoft.com/detail/${a.storeId}`;
 
 export const APPS: DesktopApp[] = [
@@ -223,6 +226,63 @@ export const APPS: DesktopApp[] = [
       description:
         "Helps a small business write its emergency plan: assess risks, list contacts, run drills and use it when something actually happens. Prints the plan, wallet cards and a poster.",
       chips: ["Risks", "Contacts", "Drills", "Incident mode"],
+    },
+  },
+  {
+    name: "DuckDuckSchool",
+    storeId: "9MT0XQ05CP2P",
+    icon: "/apps/school.png",
+    accent: "bg-wash",
+    uiLang: "th",
+    th: {
+      tagline: "สมุดครูและงานครูประจำชั้น",
+      description:
+        "จัดตารางสอน เช็คชื่อ กรอกคะแนน แล้วตัดเกรดตามหลักสูตรแกนกลางให้เอง มีงานครูประจำชั้นครบ ทั้งเยี่ยมบ้าน คัดกรอง SDQ และคะแนนความประพฤติ พิมพ์ ปพ.5 และส่งออก Excel ไปกรอก SGS ได้",
+      chips: ["ตารางสอน", "เช็คชื่อ", "ตัดเกรด", "SDQ", "ปพ.5"],
+    },
+    en: {
+      tagline: "Teacher's gradebook and homeroom tasks.",
+      description:
+        "Timetable, attendance and scores, with grades calculated to the Thai core curriculum. Homeroom work too — home visits, SDQ screening and conduct points. Prints the ปพ.5 report and exports Excel for SGS.",
+      chips: ["Timetable", "Attendance", "Grading", "SDQ", "ปพ.5"],
+    },
+  },
+  {
+    name: "DuckDuckTrip",
+    storeId: "9PLFC63DZ84D",
+    icon: "/apps/trip.png",
+    accent: "bg-mint",
+    uiLang: "th",
+    th: {
+      tagline: "งานบริษัททัวร์ขนาดเล็ก",
+      description:
+        "เปิดรอบเดินทาง รับจอง จัดห้องพัก รับเงินแล้วออกใบเสร็จและใบกำกับภาษีให้เอง คืนเงินพร้อมใบลดหนี้ ตรวจอายุพาสปอร์ต ส่งรายชื่อให้บริษัทประกัน และดูกำไรของแต่ละกรุ๊ป",
+      chips: ["รอบเดินทาง", "การจอง", "ใบกำกับภาษี", "จัดห้อง", "กำไรรายกรุ๊ป"],
+    },
+    en: {
+      tagline: "Small tour operator back office.",
+      description:
+        "Open departures, take bookings, assign rooms, collect payments and issue receipts and tax invoices. Refunds with credit notes, passport expiry checks, insurer name lists and profit per group.",
+      chips: ["Departures", "Bookings", "Tax invoices", "Rooming", "Group profit"],
+    },
+  },
+  {
+    name: "DuckDuckPilates",
+    storeId: "9P64X411QMXJ",
+    icon: "/apps/pilates.png",
+    accent: "bg-duck",
+    uiLang: "th",
+    th: {
+      tagline: "หน้าเคาน์เตอร์สตูดิโอพิลาทิส",
+      description:
+        "จองคลาสได้ไม่เกินจำนวนเครื่องรีฟอร์มเมอร์ที่ใช้ได้จริง มีคนยกเลิกแล้วคนในรายชื่อรอได้ที่เอง ขายและพักแพ็กเกจเครดิต ออกใบเสร็จพร้อม QR พร้อมเพย์ และสรุปค่าสอนครูให้",
+      chips: ["จองคลาส", "รายชื่อรอ", "แพ็กเกจเครดิต", "พร้อมเพย์", "ค่าสอนครู"],
+    },
+    en: {
+      tagline: "Front desk for a Pilates studio.",
+      description:
+        "Class booking capped at the reformers actually in service, with an auto-filling waitlist. Sell and pause credit packs, issue receipts with a PromptPay QR, and total up instructor pay.",
+      chips: ["Booking", "Waitlist", "Credit packs", "PromptPay", "Instructor pay"],
     },
   },
 ];
