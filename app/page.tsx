@@ -631,7 +631,7 @@ export default function Home() {
               {t.winOnly}
             </p>
 
-            {STORE_LIVE ? (
+            {STORE_LIVE && app.storeId ? (
               <a
                 href={storeUrl(app)}
                 target="_blank"

@@ -14,8 +14,9 @@ export type DesktopApp = {
   en: Copy;
 };
 
-// ponytail: flip to true once all 14 apps pass Store certification (detail pages 404 before publish).
+// ponytail: flip to true once all 16 apps pass Store certification (detail pages 404 before publish).
 export const STORE_LIVE = false;
+// Empty storeId = not reserved in Partner Center yet; the install button stays "coming soon" for that app.
 
 export const storeUrl = (a: DesktopApp) => `https://apps.microsoft.com/detail/${a.storeId}`;
 
@@ -330,6 +331,50 @@ export const APPS: DesktopApp[] = [
         "Class booking capped at the reformers actually in service, with an auto-filling waitlist. Sell and pause credit packs, issue receipts with a PromptPay QR, and total up instructor pay.",
       chips: ["Booking", "Waitlist", "Credit packs", "PromptPay", "Instructor pay"],
       features: ["Weekly class board", "Spots capped at reformers in service", "Waitlist", "Credit packs and pausing", "Late-cancel and no-show policy", "Receipts/tax invoices with PromptPay QR", "Refunds and credit notes", "Health-data consent", "Instructor pay"],
+    },
+  },
+  {
+    name: "DuckDuckRepair",
+    storeId: "",
+    icon: "/apps/repair.png",
+    shots: 5,
+    accent: "bg-wash",
+    uiLang: "th",
+    th: {
+      tagline: "หน้าเคาน์เตอร์ร้านซ่อมมือถือ",
+      description:
+        "รับเครื่องแล้วพิมพ์ใบรับซ่อมกับป้ายติดเครื่อง ส่งราคาให้ลูกค้าตกลงก่อนซ่อม ตัดสต็อกอะไหล่ ดูงานทั้งร้านบนกระดาน ส่งมอบพร้อมใบรับประกัน และสรุปค่าคอมช่าง รหัสปลดล็อกเครื่องเข้ารหัสเก็บในคอมของร้าน",
+      chips: ["ใบรับซ่อม", "สต็อกอะไหล่", "รับประกัน", "พร้อมเพย์", "ค่าคอมช่าง"],
+      features: ["ใบรับซ่อมและป้ายติดเครื่อง", "ฝากรหัสปลดล็อกแบบซ่อนไว้", "ส่งราคาและบันทึกการตกลงของลูกค้า", "กระดานงานซ่อม", "สต็อกอะไหล่", "ใบเสร็จ/ใบกำกับภาษีและ QR พร้อมเพย์", "คืนเงินและใบลดหนี้", "ส่งมอบเครื่องและใบรับประกัน", "งานเคลม", "ข้อความ LINE แจ้งลูกค้า", "ค่าคอมช่าง"],
+    },
+    en: {
+      tagline: "Front desk for a phone repair shop.",
+      description:
+        "Check devices in with a printed repair ticket and tag, get the customer's OK on a quote before work starts, draw parts from stock, track every job on one board, and hand back with a warranty slip. Unlock codes stay encrypted on the shop's PC.",
+      chips: ["Repair tickets", "Parts stock", "Warranty", "PromptPay", "Tech commission"],
+      features: ["Repair tickets and device tags", "Hidden unlock-code storage", "Quotes with customer approval", "Repair job board", "Parts stock", "Receipts/tax invoices with PromptPay QR", "Refunds and credit notes", "Handover with warranty slip", "Warranty claims", "LINE messages to customers", "Technician commission"],
+    },
+  },
+  {
+    name: "DuckDuckStudio",
+    storeId: "",
+    icon: "/apps/studio.png",
+    shots: 5,
+    accent: "bg-mint",
+    uiLang: "th",
+    th: {
+      tagline: "หน้าเคาน์เตอร์ห้องซ้อมดนตรีและห้องอัด",
+      description:
+        "ดูห้องว่างทั้งร้านบนตารางเดียว รับจองพร้อมมัดจำ รับวอล์กอิน บันทึกเข้าห้องออกห้องแล้วคิดเวลาเกินให้เอง ขายแพ็กชั่วโมง ให้เช่าอุปกรณ์เสริม และปิดยอดเงินสดทุกวัน",
+      chips: ["จองห้อง", "มัดจำ", "แพ็กชั่วโมง", "พร้อมเพย์", "ปิดยอด"],
+      features: ["ตารางห้องรายวันและรายสัปดาห์", "จองพร้อมมัดจำและกันจองซ้อน", "วอล์กอิน", "เข้าห้อง ออกห้อง และคิดเวลาเกิน", "แพ็กชั่วโมง", "อุปกรณ์เสริมและซาวด์เอนจิเนียร์", "ราคาตามช่วงเวลา", "ใบเสร็จ/ใบกำกับภาษีและ QR พร้อมเพย์", "คืนเงินและใบลดหนี้", "ปิดยอดประจำวัน", "ข้อความ LINE แจ้งลูกค้า"],
+    },
+    en: {
+      tagline: "Front desk for a rehearsal and recording studio.",
+      description:
+        "See every free room on one board, take bookings with deposits and walk-ins, check in and out with overtime worked out for you, sell hour packs, rent out extra gear, and close the cash drawer each day.",
+      chips: ["Room booking", "Deposits", "Hour packs", "PromptPay", "Day close"],
+      features: ["Daily and weekly room board", "Deposits and double-booking guard", "Walk-ins", "Check-in, check-out and overtime", "Hour packs", "Gear rental and sound engineers", "Time-of-day pricing", "Receipts/tax invoices with PromptPay QR", "Refunds and credit notes", "Daily close", "LINE messages to customers"],
     },
   },
 ];
