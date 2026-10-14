@@ -365,20 +365,18 @@ export default function Home() {
 
       {/* ── About ──────────────────────────────────────── */}
       <section id="about" className="border-t border-line bg-sheet py-16 sm:py-24">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-8 lg:grid-cols-[1fr_24rem] lg:gap-16">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-8 lg:grid-cols-[22rem_1fr] lg:gap-16">
+          <Image
+            src="/peter.webp"
+            alt="Peerapong (Peter) Saksommon"
+            width={768}
+            height={750}
+            className="aspect-square w-40 rounded-2xl object-cover sm:w-48 lg:w-full"
+          />
           <div>
             <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">{t.aboutTitle}</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-graphite">{t.aboutBody}</p>
-          </div>
-          <div className="lg:self-end">
-            <Image
-              src="/peter.webp"
-              alt="Peerapong (Peter) Saksommon"
-              width={768}
-              height={750}
-              className="mb-6 aspect-square w-40 rounded-2xl object-cover sm:w-48 lg:w-full"
-            />
-            <ul className="border-t border-line">
+            <ul className="mt-8 max-w-2xl border-t border-line">
               {t.creds.map((c) => (
                 <li key={c} className="border-b border-line py-3 font-semibold">
                   {c}
