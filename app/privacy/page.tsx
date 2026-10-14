@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-// Privacy policy for the Windows desktop apps (linked from Microsoft Store listings).
+// Privacy policy for the Windows desktop apps (linked from the site footer).
 // Facts verified against app code 2026-10-07: data stays local; network = GitHub update
-// check (off in Store builds) + user-sent feedback/crash reports via feedback.peerapongsm.dev,
+// check + user-sent feedback/crash reports via feedback.peerapongsm.dev,
 // which emails the report and uses the IP only for rate limiting.
 
 export const metadata: Metadata = {
@@ -48,8 +48,7 @@ export default function Privacy() {
           <p>แอปใช้งานออฟไลน์ได้ทั้งหมด มีแค่สองกรณีที่ต่อเน็ต</p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>ตรวจหาเวอร์ชันใหม่</strong> เฉพาะตัวที่ติดตั้งจากเว็บไซต์ แอปจะถาม GitHub Releases ว่ามีเวอร์ชันใหม่ไหม
-              ไม่ส่งข้อมูลของคุณไปด้วย ส่วนตัวที่ติดตั้งจาก Microsoft Store จะอัปเดตผ่าน Store แทน
+              <strong>ตรวจหาเวอร์ชันใหม่</strong> แอปจะถาม GitHub Releases ว่ามีเวอร์ชันใหม่ไหม ไม่ส่งข้อมูลของคุณไปด้วย
             </li>
             <li>
               <strong>รายงานปัญหาหรือส่งความเห็น</strong> ส่งเฉพาะตอนที่คุณกดส่งเองเท่านั้น
@@ -96,8 +95,8 @@ export default function Privacy() {
           <p>The apps work fully offline. They connect to the internet in only two cases:</p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>Update check.</strong> Copies installed from our website ask GitHub Releases whether a new version
-              exists. None of your data is sent. Copies installed from the Microsoft Store are updated by the Store instead.
+              <strong>Update check.</strong> The app asks GitHub Releases whether a new version exists. None of your data
+              is sent.
             </li>
             <li>
               <strong>Problem reports and feedback</strong>, only when you choose to send one. A report contains the text

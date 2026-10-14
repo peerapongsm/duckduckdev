@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { APPS, STORE_LIVE, shotUrls, storeUrl, type DesktopApp } from "./apps-data";
+import { APPS, downloadUrl, shotUrls, type DesktopApp } from "./apps-data";
 
 const EMAIL = "contact@peerapongsm.dev";
 const ARMORY_URL = "https://armory.peerapongsm.dev/";
@@ -43,9 +43,18 @@ const COPY = {
     winOnly: "ใช้ได้กับ Windows 10 และ 11 (64-bit) บนคอมพิวเตอร์ ยังไม่มีเวอร์ชัน Mac มือถือ และแท็บเล็ต",
     uiLang: { th: "หน้าจอภาษาไทย", en: "หน้าจอภาษาอังกฤษ" },
     dl: {
-      button: "ติดตั้งจาก Microsoft Store",
-      soon: "เร็ว ๆ นี้บน Microsoft Store",
-      note: "ติดตั้งและอัปเดตผ่าน Microsoft Store ฟรี ไม่ต้องสมัครสมาชิก",
+      button: "ดาวน์โหลดตัวติดตั้ง",
+      size: "ไฟล์ .exe ประมาณ 100 MB",
+      guideTitle: "วิธีติดตั้ง",
+      guideWhy:
+        "โปรแกรมยังไม่มีลายเซ็นดิจิทัล (code signing) ที่ต้องจ่ายรายปี Windows กับเบราว์เซอร์เลยเตือนก่อนเปิดไฟล์ เป็นเรื่องปกติของโปรแกรมจากผู้พัฒนารายเล็ก ไฟล์ส่งตรงจากหน้า GitHub ของโปรแกรม",
+      steps: [
+        "กดปุ่มดาวน์โหลด ไฟล์จะเริ่มโหลดทันที",
+        "ถ้าเบราว์เซอร์เตือนว่าไฟล์นี้ไม่ค่อยมีคนดาวน์โหลด ให้เลือกเก็บไฟล์ไว้ ใน Edge กด ⋯ ที่รายการดาวน์โหลด แล้วกด Keep (เก็บไว้) ถ้าถามอีกครั้ง กด Show more แล้วกด Keep anyway ใน Chrome กด Keep",
+        "เปิดไฟล์ที่โหลดมา ถ้าขึ้นกรอบสีน้ำเงิน Windows protected your PC ให้กด More info (ข้อมูลเพิ่มเติม) แล้วกด Run anyway (เรียกใช้ต่อไป)",
+        "รอติดตั้งจนเสร็จ แล้วเปิดโปรแกรมจากหน้าเดสก์ท็อปหรือเมนู Start",
+      ],
+      note: "ฟรี ไม่ต้องสมัครสมาชิก",
       close: "ปิด",
       features: "ทำอะไรได้บ้าง",
       prev: "ภาพก่อนหน้า",
@@ -103,9 +112,18 @@ const COPY = {
     winOnly: "Windows 10 and 11 (64-bit) desktops only. No Mac, phone or tablet versions yet.",
     uiLang: { th: "Thai interface", en: "English interface" },
     dl: {
-      button: "Get it from Microsoft Store",
-      soon: "Coming soon to Microsoft Store",
-      note: "Installs and updates through the Microsoft Store. Free, no account needed.",
+      button: "Download installer",
+      size: ".exe file, about 100 MB",
+      guideTitle: "How to install",
+      guideWhy:
+        "The apps aren't code-signed yet (that costs a yearly fee), so Windows and your browser warn you before the file runs. That's normal for software from small developers. The file comes straight from the app's GitHub page.",
+      steps: [
+        "Press the download button. The download starts right away.",
+        "If your browser says the file isn't commonly downloaded, keep it. In Edge, press ⋯ on the download, then Keep. If it asks again, press Show more, then Keep anyway. In Chrome, press Keep.",
+        "Open the downloaded file. If a blue box says Windows protected your PC, press More info, then Run anyway.",
+        "Wait for the install to finish, then open the app from its desktop icon or the Start menu.",
+      ],
+      note: "Free, no account needed.",
       close: "Close",
       features: "What it does",
       prev: "Previous screenshot",
@@ -428,7 +446,7 @@ export default function Home() {
 
       {/* ── App dialog ─────────────────────────────────── */}
       {/* Native <dialog>, not a window.open popup, so popup blockers never fire.
-          Install button is a plain link to the app's Microsoft Store page. */}
+          Download button is a plain link to the installer on the app's GitHub release. */}
       <dialog
         ref={dialogRef}
         onClose={() => setOpenAppName(null)}
@@ -470,22 +488,23 @@ export default function Home() {
               {t.uiLang[app.uiLang]} · {t.winOnly}
             </p>
 
-            {STORE_LIVE && app.storeId ? (
-              <a
-                href={storeUrl(app)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 block rounded-xl bg-ink px-6 py-4 text-center text-lg font-semibold text-white transition-colors hover:bg-indigo-deep"
-              >
-                {t.dl.button}
-              </a>
-            ) : (
-              <p className="mt-5 rounded-xl border border-dashed border-ink/30 px-6 py-4 text-center text-lg font-semibold text-graphite">
-                {t.dl.soon}
-              </p>
-            )}
+            <a
+              href={downloadUrl(app)}
+              className="mt-5 block rounded-xl bg-ink px-6 py-4 text-center text-lg font-semibold text-white transition-colors hover:bg-indigo-deep"
+            >
+              {t.dl.button} v{app.version}
+            </a>
+            <p className="mt-2 text-center text-sm text-graphite">
+              {t.dl.size} · {t.dl.note}
+            </p>
 
-            <p className="mt-6 text-sm text-graphite">{t.dl.note}</p>
+            <h3 className="mt-6 font-display text-lg font-bold">{t.dl.guideTitle}</h3>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-graphite">{t.dl.guideWhy}</p>
+            <ol className="mt-3 grid list-decimal gap-2 pl-5 leading-relaxed">
+              {t.dl.steps.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ol>
           </div>
         )}
       </dialog>

@@ -1,11 +1,11 @@
-// Windows desktop apps from ../electron, installed through the Microsoft Store
-// (Store-signed, Store-updated). storeId = Partner Center → Product identity → Store ID.
+// Windows desktop apps from ../electron, downloaded as the NSIS installer from each repo's GitHub
+// release. version = the release tag without "v"; bump it on every new release.
 
 type Copy = { tagline: string; description: string; chips: string[]; features: string[] };
 
 export type DesktopApp = {
   name: string;
-  storeId: string;
+  version: string;
   icon: string;
   shots: number; // screenshot count in /apps/shots/<icon-name>-<1..n>.webp
   uiLang: "th" | "en";
@@ -13,11 +13,12 @@ export type DesktopApp = {
   en: Copy;
 };
 
-// ponytail: flip to true once the apps pass Store certification (detail pages 404 before publish).
-export const STORE_LIVE = false;
-// Empty storeId = not in Partner Center yet; the install button stays "coming soon" for that app.
-
-export const storeUrl = (a: DesktopApp) => `https://apps.microsoft.com/detail/${a.storeId}`;
+// Direct asset link: GitHub answers with Content-Disposition: attachment, so the download starts
+// in place. Repo slug comes from the icon name (/apps/wash.png → peerapos-wash).
+export const downloadUrl = (a: DesktopApp) => {
+  const slug = a.icon.slice("/apps/".length, -".png".length);
+  return `https://github.com/peerapongsm/peerapos-${slug}/releases/download/v${a.version}/${a.name.replace(" ", "-")}-Setup-${a.version}.exe`;
+};
 
 // Screenshots are named after the icon: /apps/wash.png → /apps/shots/wash-1.webp … wash-n.webp
 export const shotUrls = (a: DesktopApp) =>
@@ -26,7 +27,7 @@ export const shotUrls = (a: DesktopApp) =>
 export const APPS: DesktopApp[] = [
   {
     name: "PeerapoS Wash",
-    storeId: "",
+    version: "2.1.2",
     icon: "/apps/wash.png",
     shots: 5,
     uiLang: "th",
@@ -47,7 +48,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Stock",
-    storeId: "",
+    version: "1.1.0",
     icon: "/apps/stock.png",
     shots: 5,
     uiLang: "th",
@@ -68,7 +69,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS File",
-    storeId: "",
+    version: "1.1.0",
     icon: "/apps/file.png",
     shots: 4,
     uiLang: "th",
@@ -89,7 +90,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Pay",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/pay.png",
     shots: 4,
     uiLang: "th",
@@ -110,7 +111,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Garage",
-    storeId: "",
+    version: "1.1.0",
     icon: "/apps/garage.png",
     shots: 4,
     uiLang: "th",
@@ -131,7 +132,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Room",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/room.png",
     shots: 4,
     uiLang: "th",
@@ -152,7 +153,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Class",
-    storeId: "",
+    version: "1.2.1",
     icon: "/apps/class.png",
     shots: 4,
     uiLang: "th",
@@ -173,7 +174,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS CRM",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/crm.png",
     shots: 4,
     uiLang: "th",
@@ -194,7 +195,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Campaign",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/campaign.png",
     shots: 4,
     uiLang: "th",
@@ -215,7 +216,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Plan",
-    storeId: "",
+    version: "2.1.1",
     icon: "/apps/plan.png",
     shots: 4,
     uiLang: "th",
@@ -236,7 +237,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS BCP",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/bcp.png",
     shots: 4,
     uiLang: "th",
@@ -257,7 +258,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS School",
-    storeId: "",
+    version: "1.1.2",
     icon: "/apps/school.png",
     shots: 5,
     uiLang: "th",
@@ -278,7 +279,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Trip",
-    storeId: "",
+    version: "1.1.2",
     icon: "/apps/trip.png",
     shots: 5,
     uiLang: "th",
@@ -299,7 +300,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Pilates",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/pilates.png",
     shots: 5,
     uiLang: "th",
@@ -320,7 +321,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Repair",
-    storeId: "",
+    version: "1.1.2",
     icon: "/apps/repair.png",
     shots: 5,
     uiLang: "th",
@@ -341,7 +342,7 @@ export const APPS: DesktopApp[] = [
   },
   {
     name: "PeerapoS Studio",
-    storeId: "",
+    version: "1.1.1",
     icon: "/apps/studio.png",
     shots: 5,
     uiLang: "th",
