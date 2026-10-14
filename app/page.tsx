@@ -95,8 +95,8 @@ const COPY = {
     aboutBody:
       "Peerapong (Peter) Saksommon คือคนที่ทำทุกโปรแกรมในเว็บนี้ ตอนนี้ทำงานที่ธนาคารแห่งประเทศไทย ก่อนหน้านั้นเป็น Full-Stack Engineer ที่ Agoda งานฟรีแลนซ์ล่าสุดคือระบบ MES ให้โรงงานผลิตกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ ใช้ได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์",
     creds: [
-      "ธนาคารแห่งประเทศไทย · ตั้งแต่ 2025",
-      "Agoda · Full-Stack Engineer 2023–2025",
+      "ธนาคารแห่งประเทศไทย - Software Architect",
+      "Ex-Agoda · Full-Stack Engineer",
       "ป.โท Information Systems, Syracuse University",
       "ป.ตรี Information Technology, University of Washington",
       "Microsoft Certified: Azure Solutions Architect Expert",
@@ -173,8 +173,8 @@ const COPY = {
     aboutBody:
       "I'm Peerapong (Peter) Saksommon, the engineer behind every app here. I work at the Bank of Thailand, and before that I was a full-stack engineer at Agoda. Most recently I built a manufacturing system for a woven-sack factory, covering breakdown reports, maintenance work orders and spare-parts inventory on phones, tablets and desktops.",
     creds: [
-      "Bank of Thailand · since 2025",
-      "Agoda · Full-Stack Engineer, 2023–2025",
+      "Bank of Thailand - Software Architect",
+      "Ex-Agoda · Full-Stack Engineer",
       "MS Information Systems, Syracuse University",
       "BS Information Technology, University of Washington",
       "Microsoft Certified: Azure Solutions Architect Expert",
