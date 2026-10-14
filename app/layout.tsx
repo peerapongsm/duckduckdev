@@ -17,9 +17,9 @@ const plexThai = IBM_Plex_Sans_Thai_Looped({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://peerapongsm.dev"),
-  title: "PeerapoS Software House — โปรแกรมฟรีสำหรับ SME และรับทำแอปตามสั่ง",
+  title: "PeerapoS — โปรแกรมฟรีสำหรับ SME และรับทำแอปตามสั่ง",
   description:
-    "PeerapoS Software House ทำโปรแกรม Windows ฟรีสำหรับธุรกิจเล็ก 16 ตัว ใช้งานออฟไลน์ ข้อมูลอยู่ในเครื่องคุณ และรับทำแอปตามสั่งให้พอดีกับงานของร้าน",
+    "PeerapoS ทำโปรแกรม Windows ฟรีสำหรับธุรกิจเล็ก 16 ตัว ใช้งานออฟไลน์ ข้อมูลอยู่ในเครื่องคุณ และรับทำแอปตามสั่งให้พอดีกับงานของร้าน",
 };
 
 export default function RootLayout({

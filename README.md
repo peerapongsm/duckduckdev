@@ -1,6 +1,6 @@
-# PeerapoS Software House
+# PeerapoS
 
-Website for PeerapoS Software House: free offline Windows apps for small businesses, and custom apps on demand.
+Website for PeerapoS: free offline Windows apps for small businesses, and custom apps on demand.
 
 Live: https://peerapongsm.dev
 

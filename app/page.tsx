@@ -323,7 +323,6 @@ export default function Home() {
           <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
             {t.steps.map((s, i) => (
               <li key={s.title} className="border-t-2 border-ink pt-5">
-                <span className="font-display text-sm font-bold text-graphite">{i + 1}</span>
                 <h3 className="mt-1 font-display text-2xl font-bold">{s.title}</h3>
                 <p className="mt-2 leading-relaxed text-graphite">{s.body}</p>
               </li>
@@ -375,7 +374,7 @@ export default function Home() {
           </ul>
 
           <footer className="mt-16 flex flex-col gap-2 border-t border-white/15 pt-6 text-sm text-white/60 sm:flex-row sm:justify-between">
-            <span>© 2026 PeerapoS Software House</span>
+            <span>© 2026 PeerapoS</span>
             <a href="/privacy" className="hover:text-white">{t.privacy}</a>
           </footer>
         </div>

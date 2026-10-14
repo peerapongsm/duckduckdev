@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 // which emails the report and uses the IP only for rate limiting.
 
 export const metadata: Metadata = {
-  title: "นโยบายความเป็นส่วนตัว · Privacy Policy — PeerapoS Software House",
-  description: "Privacy policy for the PeerapoS Windows desktop apps by PeerapoS Software House.",
+  title: "นโยบายความเป็นส่วนตัว · Privacy Policy — PeerapoS",
+  description: "Privacy policy for the PeerapoS Windows desktop apps by PeerapoS.",
 };
 
 const EMAIL = "contact@peerapongsm.dev";
@@ -27,13 +27,13 @@ export default function Privacy() {
   return (
     <main className="mx-auto max-w-2xl px-5 py-14 sm:px-8">
       <a href="/" className="font-display font-bold hover:text-indigo">
-        PeerapoS Software House
+        PeerapoS
       </a>
 
       {/* ── ภาษาไทย ── */}
       <article lang="th" className="mt-8">
         <h1 className="font-display text-4xl font-bold tracking-tight">นโยบายความเป็นส่วนตัว</h1>
-        <p className="mt-2 text-graphite">โปรแกรม Windows ของ PeerapoS Software House อัปเดตล่าสุด 14 ตุลาคม 2569</p>
+        <p className="mt-2 text-graphite">โปรแกรม Windows ของ PeerapoS อัปเดตล่าสุด 14 ตุลาคม 2569</p>
         <p className="mt-4 leading-relaxed text-graphite">ใช้กับโปรแกรม {APPS}</p>
 
         <Section title="ข้อมูลของคุณอยู่ในเครื่องคุณ">
@@ -81,7 +81,7 @@ export default function Privacy() {
       {/* ── English ── */}
       <article lang="en">
         <h2 className="font-display text-4xl font-bold tracking-tight">Privacy Policy</h2>
-        <p className="mt-2 text-graphite">Windows desktop apps by PeerapoS Software House. Last updated 14 October 2026</p>
+        <p className="mt-2 text-graphite">Windows desktop apps by PeerapoS. Last updated 14 October 2026</p>
         <p className="mt-4 leading-relaxed text-graphite">Applies to {APPS}.</p>
 
         <Section title="Your data stays on your PC">
