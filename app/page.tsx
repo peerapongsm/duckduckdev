@@ -48,11 +48,21 @@ const COPY = {
       guideTitle: "วิธีติดตั้ง",
       guideWhy:
         "โปรแกรมยังไม่มีลายเซ็นดิจิทัล (code signing) ที่ต้องจ่ายรายปี Windows กับเบราว์เซอร์เลยเตือนก่อนเปิดไฟล์ เป็นเรื่องปกติของโปรแกรมจากผู้พัฒนารายเล็ก ไฟล์ส่งตรงจากหน้า GitHub ของโปรแกรม",
+      // Each step = [main step, ...sub-steps]; sub-steps render as 2.1, 2.2 …
       steps: [
-        "กดปุ่มดาวน์โหลด ไฟล์จะเริ่มโหลดทันที",
-        "ถ้าเบราว์เซอร์เตือนว่าไฟล์นี้ไม่ค่อยมีคนดาวน์โหลด ให้เลือกเก็บไฟล์ไว้ ใน Edge กด ⋯ ที่รายการดาวน์โหลด แล้วกด Keep (เก็บไว้) ถ้าถามอีกครั้ง กด Show more แล้วกด Keep anyway ใน Chrome กด Keep",
-        "เปิดไฟล์ที่โหลดมา ถ้าขึ้นกรอบสีน้ำเงิน Windows protected your PC ให้กด More info (ข้อมูลเพิ่มเติม) แล้วกด Run anyway (เรียกใช้ต่อไป)",
-        "รอติดตั้งจนเสร็จ แล้วเปิดโปรแกรมจากหน้าเดสก์ท็อปหรือเมนู Start",
+        ["กดปุ่มดาวน์โหลดด้านล่าง ไฟล์จะเริ่มโหลดทันที"],
+        [
+          "ถ้าเบราว์เซอร์เตือนว่าไฟล์นี้ไม่ค่อยมีคนดาวน์โหลด ให้เลือกเก็บไฟล์ไว้",
+          "Edge: กด ⋯ ที่รายการดาวน์โหลด แล้วกด Keep (เก็บไว้)",
+          "ถ้า Edge ถามอีกครั้ง: กด Show more แล้วกด Keep anyway",
+          "Chrome: กด Keep",
+        ],
+        [
+          "เปิดไฟล์ที่โหลดมา ถ้าขึ้นกรอบสีน้ำเงิน Windows protected your PC",
+          "กด More info (ข้อมูลเพิ่มเติม)",
+          "กด Run anyway (เรียกใช้ต่อไป)",
+        ],
+        ["รอติดตั้งจนเสร็จ แล้วเปิดโปรแกรมจากหน้าเดสก์ท็อปหรือเมนู Start"],
       ],
       note: "ฟรี ไม่ต้องสมัครสมาชิก",
       close: "ปิด",
@@ -118,10 +128,19 @@ const COPY = {
       guideWhy:
         "The apps aren't code-signed yet (that costs a yearly fee), so Windows and your browser warn you before the file runs. That's normal for software from small developers. The file comes straight from the app's GitHub page.",
       steps: [
-        "Press the download button. The download starts right away.",
-        "If your browser says the file isn't commonly downloaded, keep it. In Edge, press ⋯ on the download, then Keep. If it asks again, press Show more, then Keep anyway. In Chrome, press Keep.",
-        "Open the downloaded file. If a blue box says Windows protected your PC, press More info, then Run anyway.",
-        "Wait for the install to finish, then open the app from its desktop icon or the Start menu.",
+        ["Press the download button below. The download starts right away."],
+        [
+          "If your browser says the file isn't commonly downloaded, keep it.",
+          "Edge: press ⋯ on the download, then Keep.",
+          "If Edge asks again: press Show more, then Keep anyway.",
+          "Chrome: press Keep.",
+        ],
+        [
+          "Open the downloaded file. If a blue box says Windows protected your PC:",
+          "Press More info.",
+          "Press Run anyway.",
+        ],
+        ["Wait for the install to finish, then open the app from its desktop icon or the Start menu."],
       ],
       note: "Free, no account needed.",
       close: "Close",
@@ -488,23 +507,41 @@ export default function Home() {
               {t.uiLang[app.uiLang]} · {t.winOnly}
             </p>
 
+            <h3 className="mt-6 font-display text-lg font-bold">{t.dl.guideTitle}</h3>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-graphite">{t.dl.guideWhy}</p>
+            {/* Numbers are written out (1, 2.1, 2.2 …) so sub-steps read the way they're spoken. */}
+            <ol className="mt-3 grid gap-2 leading-relaxed">
+              {t.dl.steps.map(([step, ...subs], i) => (
+                <li key={step}>
+                  <span className="flex gap-2">
+                    <span className="w-6 shrink-0 font-semibold">{i + 1}.</span>
+                    <span>{step}</span>
+                  </span>
+                  {subs.length > 0 && (
+                    <ol className="mt-1 grid gap-1 pl-8">
+                      {subs.map((s, j) => (
+                        <li key={s} className="flex gap-2">
+                          <span className="w-8 shrink-0 font-semibold">
+                            {i + 1}.{j + 1}
+                          </span>
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                </li>
+              ))}
+            </ol>
+
             <a
               href={downloadUrl(app)}
-              className="mt-5 block rounded-xl bg-ink px-6 py-4 text-center text-lg font-semibold text-white transition-colors hover:bg-indigo-deep"
+              className="mt-6 block rounded-xl bg-ink px-6 py-4 text-center text-lg font-semibold text-white transition-colors hover:bg-indigo-deep"
             >
               {t.dl.button} v{app.version}
             </a>
             <p className="mt-2 text-center text-sm text-graphite">
               {t.dl.size} · {t.dl.note}
             </p>
-
-            <h3 className="mt-6 font-display text-lg font-bold">{t.dl.guideTitle}</h3>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-graphite">{t.dl.guideWhy}</p>
-            <ol className="mt-3 grid list-decimal gap-2 pl-5 leading-relaxed">
-              {t.dl.steps.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ol>
           </div>
         )}
       </dialog>
