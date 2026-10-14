@@ -446,6 +446,13 @@ export default function Home() {
                 </h2>
                 <p className="text-lg text-graphite">{app[lang].tagline}</p>
               </div>
+              <button
+                type="button"
+                onClick={() => dialogRef.current?.close()}
+                className="ml-auto shrink-0 self-start rounded-full border border-line px-5 py-2 font-semibold hover:border-ink"
+              >
+                {t.dl.close}
+              </button>
             </div>
 
             <Carousel key={app.name} srcs={shotUrls(app)} alt={app.name} labels={t.dl} />
@@ -478,16 +485,7 @@ export default function Home() {
               </p>
             )}
 
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-graphite">{t.dl.note}</p>
-              <button
-                type="button"
-                onClick={() => dialogRef.current?.close()}
-                className="rounded-full border border-line px-5 py-2 font-semibold hover:border-ink"
-              >
-                {t.dl.close}
-              </button>
-            </div>
+            <p className="mt-6 text-sm text-graphite">{t.dl.note}</p>
           </div>
         )}
       </dialog>
