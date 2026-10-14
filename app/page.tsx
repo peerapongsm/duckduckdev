@@ -74,10 +74,10 @@ const COPY = {
     armoryLink: "ไปที่ The Armory",
     aboutTitle: "คนที่ทำโปรแกรมพวกนี้",
     aboutBody:
-      "Peerapong (Peter) Saksommon คือคนที่ทำทุกโปรแกรมในเว็บนี้ เคยทำหน้าจองที่พักของ Agoda ที่นักท่องเที่ยวหลายล้านคนใช้จองที่พักกว่า 4 ล้านแห่ง ตอนนี้ทำเว็บบริการประชาชนและเครื่องมือ Generative AI ที่ธนาคารแห่งประเทศไทย งานฟรีแลนซ์ล่าสุดคือระบบ MES ให้โรงงานผลิตกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ ใช้ได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์",
+      "Peerapong (Peter) Saksommon คือคนที่ทำทุกโปรแกรมในเว็บนี้ ตอนนี้ทำงานที่ธนาคารแห่งประเทศไทย ก่อนหน้านั้นเป็น Full-Stack Engineer ที่ Agoda งานฟรีแลนซ์ล่าสุดคือระบบ MES ให้โรงงานผลิตกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ ใช้ได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์",
     creds: [
-      "Agoda · Full-Stack Engineer ทีมหน้าจอง 2023–2025",
       "ธนาคารแห่งประเทศไทย · ตั้งแต่ 2025",
+      "Agoda · Full-Stack Engineer 2023–2025",
       "ป.โท Information Systems, Syracuse University",
       "ป.ตรี Information Technology, University of Washington",
       "Microsoft Certified: Azure Solutions Architect Expert",
@@ -134,10 +134,10 @@ const COPY = {
     armoryLink: "Visit The Armory",
     aboutTitle: "Who builds these",
     aboutBody:
-      "I'm Peerapong (Peter) Saksommon, the engineer behind every app here. At Agoda I worked on the booking checkout that millions of travelers use across 4M+ properties. Today I build public web services and generative-AI tools at the Bank of Thailand. Most recently I built a manufacturing system for a woven-sack factory, covering breakdown reports, maintenance work orders and spare-parts inventory on phones, tablets and desktops.",
+      "I'm Peerapong (Peter) Saksommon, the engineer behind every app here. I work at the Bank of Thailand, and before that I was a full-stack engineer at Agoda. Most recently I built a manufacturing system for a woven-sack factory, covering breakdown reports, maintenance work orders and spare-parts inventory on phones, tablets and desktops.",
     creds: [
-      "Agoda · Full-Stack Engineer, booking team, 2023–2025",
       "Bank of Thailand · since 2025",
+      "Agoda · Full-Stack Engineer, 2023–2025",
       "MS Information Systems, Syracuse University",
       "BS Information Technology, University of Washington",
       "Microsoft Certified: Azure Solutions Architect Expert",
@@ -370,13 +370,22 @@ export default function Home() {
             <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">{t.aboutTitle}</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-graphite">{t.aboutBody}</p>
           </div>
-          <ul className="border-t border-line lg:self-end">
-            {t.creds.map((c) => (
-              <li key={c} className="border-b border-line py-3 font-semibold">
-                {c}
-              </li>
-            ))}
-          </ul>
+          <div className="lg:self-end">
+            <Image
+              src="/peter.webp"
+              alt="Peerapong (Peter) Saksommon"
+              width={768}
+              height={750}
+              className="mb-6 aspect-square w-40 rounded-2xl object-cover sm:w-48 lg:w-full"
+            />
+            <ul className="border-t border-line">
+              {t.creds.map((c) => (
+                <li key={c} className="border-b border-line py-3 font-semibold">
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
