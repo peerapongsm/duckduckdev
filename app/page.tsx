@@ -31,7 +31,7 @@ const COPY = {
     navApps: "โปรแกรมฟรี",
     navCustom: "รับทำแอป",
     navContact: "ติดต่อ",
-    h1: "โปรแกรมฟรีสำหรับร้านและธุรกิจเล็ก",
+    h1: "โปรแกรมฟรี",
     heroSub:
       "16 โปรแกรมบน Windows ใช้งานออฟไลน์ ข้อมูลอยู่ในเครื่องคุณ ไม่มีค่าสมาชิก ไม่มีโฆษณา ถ้ายังไม่มีตัวที่ตรงกับงานของคุณ เรารับทำให้",
     heroApps: "ดูโปรแกรมทั้งหมด",
@@ -60,7 +60,7 @@ const COPY = {
         body: "เล่าให้ฟังว่าร้านทำงานยังไง ใช้ภาษาธรรมดา ไม่ต้องมีเอกสารสเปก แล้วเราหาจุดที่เสียเวลามากที่สุดด้วยกัน",
       },
       {
-        title: "สร้าง",
+        title: "ทำงาน",
         body: "ออกแบบและสร้างแอปให้พอดีกับงานของคุณ ไม่ใส่ฟีเจอร์เกินจำเป็น ใช้เวลาเป็นสัปดาห์ ไม่ใช่หลายเดือน",
       },
       {
@@ -80,7 +80,7 @@ const COPY = {
     navApps: "Free apps",
     navCustom: "Custom apps",
     navContact: "Contact",
-    h1: "Free software for shops and small businesses",
+    h1: "Free software",
     heroSub:
       "Sixteen Windows apps that work offline. Your data stays on your PC. No subscription, no ads. If none of them fits your work, we'll build one that does.",
     heroApps: "See all apps",
@@ -105,7 +105,7 @@ const COPY = {
       "Some work has no off-the-shelf program that fits. If your shop still runs on a notebook or a spreadsheet, we build a small app around the way you already work.",
     steps: [
       {
-        title: "Talk",
+        title: "Discuss",
         body: "Tell us how your shop actually runs, in plain words. No spec documents. Together we find the part that costs you the most time.",
       },
       {
@@ -113,7 +113,7 @@ const COPY = {
         body: "We design and build an app around your workflow, with nothing you won't use. It takes weeks, not months.",
       },
       {
-        title: "Hand over",
+        title: "Deliver",
         body: "You get the app and your data stays yours. We stay around for changes as your business grows.",
       },
     ],
@@ -242,7 +242,6 @@ export default function Home() {
       <header className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-8 sm:py-6">
         <a href="#top" className="flex items-baseline gap-2 leading-none">
           <span className="font-display text-2xl font-extrabold tracking-tight sm:text-[1.7rem]">PeerapoS</span>
-          <span className="hidden font-display text-sm font-medium text-graphite min-[380px]:inline">{t.house}</span>
         </a>
         <div className="flex items-center gap-6">
           <nav className="hidden items-center gap-6 font-semibold text-graphite md:flex">
