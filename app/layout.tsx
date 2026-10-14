@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Sans_Thai_Looped } from "next/font/google";
-import "./globals.css";
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["500", "700", "800"],
-  variable: "--font-bricolage",
-});
-
+// Self-hosted via @fontsource so CI builds never fetch from Google Fonts.
+import "@fontsource/bricolage-grotesque/latin-500.css";
+import "@fontsource/bricolage-grotesque/latin-700.css";
+import "@fontsource/bricolage-grotesque/latin-800.css";
 // Looped Thai on purpose: the owner found loopless Thai faces hard to read.
-const plexThai = IBM_Plex_Sans_Thai_Looped({
-  subsets: ["thai", "latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-plex-thai",
-});
+import "@fontsource/ibm-plex-sans-thai-looped/thai-400.css";
+import "@fontsource/ibm-plex-sans-thai-looped/thai-500.css";
+import "@fontsource/ibm-plex-sans-thai-looped/thai-600.css";
+import "@fontsource/ibm-plex-sans-thai-looped/thai-700.css";
+import "@fontsource/ibm-plex-sans-thai-looped/latin-400.css";
+import "@fontsource/ibm-plex-sans-thai-looped/latin-500.css";
+import "@fontsource/ibm-plex-sans-thai-looped/latin-600.css";
+import "@fontsource/ibm-plex-sans-thai-looped/latin-700.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://peerapongsm.dev"),
@@ -26,7 +25,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="th" className={`${bricolage.variable} ${plexThai.variable}`}>
+    <html lang="th">
       <body className="antialiased">{children}</body>
     </html>
   );

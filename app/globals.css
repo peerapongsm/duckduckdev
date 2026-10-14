@@ -10,8 +10,8 @@
   --color-indigo: #3b3fb6;
   --color-indigo-deep: #2a2d8c;
 
-  --font-display: var(--font-bricolage), var(--font-plex-thai), sans-serif;
-  --font-body: var(--font-plex-thai), sans-serif;
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans Thai Looped", sans-serif;
+  --font-body: "IBM Plex Sans Thai Looped", sans-serif;
 
   --shadow-tile: 0 1px 0 rgb(23 32 51 / 0.06), 0 10px 24px -14px rgb(23 32 51 / 0.45);
 }
