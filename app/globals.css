@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* PeerapoS Software House: a quiet, cool desk. The app tiles carry all the colour. */
+@theme {
+  --color-paper: #f4f5f7;
+  --color-sheet: #ffffff;
+  --color-ink: #172033;
+  --color-graphite: #4a5468;
+  --color-line: #dde1e8;
+  --color-indigo: #3b3fb6;
+  --color-indigo-deep: #2a2d8c;
+
+  --font-display: var(--font-bricolage), var(--font-plex-thai), sans-serif;
+  --font-body: var(--font-plex-thai), sans-serif;
+
+  --shadow-tile: 0 1px 0 rgb(23 32 51 / 0.06), 0 10px 24px -14px rgb(23 32 51 / 0.45);
+}
+
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    /* Thai has no inter-word spaces: never break a Thai word mid-character.
+       keep-all breaks only at real break opportunities (spaces), so a whole
+       Thai word stays on its line or wraps whole. */
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  /* Tailwind v4 dropped the pointer cursor on buttons; bring it back. */
+  button:not(:disabled),
+  [role="button"] {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-indigo);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-indigo);
+    color: #fff;
+  }
+}
+
+/* The one orchestrated moment: the tile wall assembles on load, tile by tile. */
+@utility tile-in {
+  opacity: 0;
+  animation: tile-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
