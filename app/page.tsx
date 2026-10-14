@@ -30,6 +30,7 @@ const COPY = {
     house: "Software House",
     navApps: "โปรแกรมฟรี",
     navCustom: "รับทำแอป",
+    navAbout: "เกี่ยวกับ",
     navContact: "ติดต่อ",
     h1: "โปรแกรมฟรี",
     heroSub:
@@ -71,6 +72,16 @@ const COPY = {
     armoryTitle: "อยากดูงานทดลองอื่น ๆ",
     armoryBody: "เว็บแอป เกม และเครื่องมือเล็ก ๆ ที่ทำทีละตัวตลอดหนึ่งปี เก็บไว้ที่ The Armory",
     armoryLink: "ไปที่ The Armory",
+    aboutTitle: "คนที่ทำโปรแกรมพวกนี้",
+    aboutBody:
+      "Peerapong (Peter) Saksommon คือคนที่ทำทุกโปรแกรมในเว็บนี้ เคยทำหน้าจองที่พักของ Agoda ที่นักท่องเที่ยวหลายล้านคนใช้จองที่พักกว่า 4 ล้านแห่ง ตอนนี้ทำเว็บบริการประชาชนและเครื่องมือ Generative AI ที่ธนาคารแห่งประเทศไทย งานฟรีแลนซ์ล่าสุดคือระบบ MES ให้โรงงานผลิตกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ ใช้ได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์",
+    creds: [
+      "Agoda · Full-Stack Engineer ทีมหน้าจอง 2023–2025",
+      "ธนาคารแห่งประเทศไทย · ตั้งแต่ 2025",
+      "ป.โท Information Systems, Syracuse University",
+      "ป.ตรี Information Technology, University of Washington",
+      "Microsoft Certified: Azure Solutions Architect Expert",
+    ],
     contactTitle: "เล่าให้ฟังว่าอะไรกินเวลาคุณทุกวัน",
     contactSub: "ส่งอีเมลหรือทัก LINE มาได้เลย ถ้าแอปเล็ก ๆ ช่วยได้ เราจะบอกว่าทำอะไรได้บ้างและใช้เวลาเท่าไร",
     privacy: "นโยบายความเป็นส่วนตัว",
@@ -79,6 +90,7 @@ const COPY = {
     house: "Software House",
     navApps: "Free apps",
     navCustom: "Custom apps",
+    navAbout: "About",
     navContact: "Contact",
     h1: "Free software",
     heroSub:
@@ -120,6 +132,16 @@ const COPY = {
     armoryTitle: "Looking for the experiments?",
     armoryBody: "Web apps, games and small tools, built one at a time over a year, live in The Armory.",
     armoryLink: "Visit The Armory",
+    aboutTitle: "Who builds these",
+    aboutBody:
+      "I'm Peerapong (Peter) Saksommon, the engineer behind every app here. At Agoda I worked on the booking checkout that millions of travelers use across 4M+ properties. Today I build public web services and generative-AI tools at the Bank of Thailand. Most recently I built a manufacturing system for a woven-sack factory, covering breakdown reports, maintenance work orders and spare-parts inventory on phones, tablets and desktops.",
+    creds: [
+      "Agoda · Full-Stack Engineer, booking team, 2023–2025",
+      "Bank of Thailand · since 2025",
+      "MS Information Systems, Syracuse University",
+      "BS Information Technology, University of Washington",
+      "Microsoft Certified: Azure Solutions Architect Expert",
+    ],
     contactTitle: "Tell us what eats your time every day",
     contactSub: "Send an email or message us on LINE. If a small app can help, we'll tell you what it would do and how long it would take.",
     privacy: "Privacy policy",
@@ -247,6 +269,7 @@ export default function Home() {
           <nav className="hidden items-center gap-6 font-semibold text-graphite md:flex">
             <a href="#apps" className="hover:text-ink">{t.navApps}</a>
             <a href="#custom" className="hover:text-ink">{t.navCustom}</a>
+            <a href="#about" className="hover:text-ink">{t.navAbout}</a>
             <a href="#contact" className="hover:text-ink">{t.navContact}</a>
           </nav>
           <LangSwitcher lang={lang} onChange={setLang} />
@@ -337,6 +360,23 @@ export default function Home() {
               {t.armoryLink}
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ── About ──────────────────────────────────────── */}
+      <section id="about" className="border-t border-line bg-sheet py-16 sm:py-24">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-8 lg:grid-cols-[1fr_24rem] lg:gap-16">
+          <div>
+            <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">{t.aboutTitle}</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-graphite">{t.aboutBody}</p>
+          </div>
+          <ul className="border-t border-line lg:self-end">
+            {t.creds.map((c) => (
+              <li key={c} className="border-b border-line py-3 font-semibold">
+                {c}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
