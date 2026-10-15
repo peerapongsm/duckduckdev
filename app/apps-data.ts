@@ -13,11 +13,12 @@ export type DesktopApp = {
   en: Copy;
 };
 
-// Direct asset link: GitHub answers with Content-Disposition: attachment, so the download starts
-// in place. Repo slug comes from the icon name (/apps/wash.png → peerapos-wash).
+// Goes through the peerapos-dl Worker (electron/peerapos-dl), which counts the download and 302s
+// to the GitHub release asset; GitHub answers with Content-Disposition: attachment, so the download
+// starts in place. Slug comes from the icon name (/apps/wash.png → wash).
 export const downloadUrl = (a: DesktopApp) => {
   const slug = a.icon.slice("/apps/".length, -".png".length);
-  return `https://github.com/peerapongsm/peerapos-${slug}/releases/download/v${a.version}/${a.name.replace(" ", "-")}-Setup-${a.version}.exe`;
+  return `https://dl.peerapongsm.dev/${slug}/${a.version}`;
 };
 
 // Screenshots are named after the icon: /apps/wash.png → /apps/shots/wash-1.webp … wash-n.webp
