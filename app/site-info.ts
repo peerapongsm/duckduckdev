@@ -6,6 +6,16 @@ export const EMAIL = "contact@peerapongsm.dev";
 export const LINE_URL = "https://line.me/ti/p/sx3m1nEg53";
 export const TIKTOK_URL = "https://www.tiktok.com/@peera.pos";
 
+export const FASTWORK_URL = "https://fastwork.com/user/peerapos";
+
+// Starting prices as listed on Fastwork (checked 2026-10-16). Update both here and the FAQ text when they change.
+export const SERVICES = [
+  { th: "รับทำ Web App ระบบงานภายในธุรกิจ (สต็อก แจ้งซ่อม อนุมัติ รายงาน)", en: "Business web app (inventory, maintenance requests, approvals, reports)", type: "Web application development", price: 4500, unit: "project" },
+  { th: "รับทำ LINE Bot / LINE OA อัตโนมัติ", en: "LINE Bot / LINE OA automation", type: "Chatbot development", price: 2500, unit: "project" },
+  { th: "รับทำ Landing Page เว็บหน้าเดียว", en: "One-page landing page", type: "Website development", price: 2500, unit: "project" },
+  { th: "สอน Vibe Coding สร้างเว็บแอปด้วย AI (Claude Code) ตัวต่อตัว", en: "1:1 vibe coding lessons: build web apps with AI (Claude Code)", type: "Training", price: 500, unit: "hour" },
+] as const;
+
 export type Faq = { q: string; a: string };
 
 export const FAQ: Record<"th" | "en", Faq[]> = {
@@ -24,7 +34,7 @@ export const FAQ: Record<"th" | "en", Faq[]> = {
     },
     {
       q: "ราคาเท่าไร",
-      a: "ขึ้นกับขนาดงาน ส่งอีเมลหรือทัก LINE มาเล่างานก่อน แล้วเราจะบอกว่าแอปทำอะไรได้บ้าง ใช้เวลาเท่าไร และราคาประมาณเท่าไร",
+      a: "Web App ระบบงานภายในธุรกิจ เช่น สต็อก แจ้งซ่อม อนุมัติ รายงาน เริ่มที่ 4,500 บาทต่อโปรเจกต์ LINE Bot หรือ LINE OA อัตโนมัติ และ Landing Page เว็บหน้าเดียว เริ่มที่ 2,500 บาท ส่วนคลาสสอน Vibe Coding สร้างเว็บแอปด้วย AI แบบตัวต่อตัว ชั่วโมงละ 500 บาท ราคาจริงขึ้นกับขนาดงาน เล่างานมาทางอีเมลหรือ LINE ก่อน แล้วเราจะบอกว่าทำอะไรได้บ้าง ใช้เวลาเท่าไร และราคาเท่าไร หรือจ้างผ่าน Fastwork ก็ได้",
     },
     {
       q: "ส่งมอบแล้ว ข้อมูลเป็นของใคร มีคนดูแลต่อไหม",
@@ -54,7 +64,7 @@ export const FAQ: Record<"th" | "en", Faq[]> = {
     },
     {
       q: "How much does it cost?",
-      a: "It depends on the size of the job. Email us or message us on LINE about the work, and we will tell you what the app would do, how long it would take and roughly what it would cost.",
+      a: "A business web app (inventory, maintenance requests, approvals, reports) starts at 4,500 THB per project. A LINE Bot / LINE OA automation or a one-page landing page starts at 2,500 THB. One-on-one vibe coding lessons, building web apps with AI, are 500 THB per hour. The final price depends on the size of the job: email us or message us on LINE and we will tell you what it would do, how long it would take and what it would cost. You can also hire us through Fastwork.",
     },
     {
       q: "Who owns the data, and is there support after delivery?",

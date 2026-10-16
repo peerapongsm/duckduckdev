@@ -14,7 +14,7 @@ import "@fontsource/ibm-plex-sans-thai-looped/latin-600.css";
 import "@fontsource/ibm-plex-sans-thai-looped/latin-700.css";
 import "./globals.css";
 import { APPS, downloadUrl } from "./apps-data";
-import { EMAIL, FAQ, LINE_URL, SITE_URL, TIKTOK_URL } from "./site-info";
+import { EMAIL, FAQ, FASTWORK_URL, LINE_URL, SERVICES, SITE_URL, TIKTOK_URL } from "./site-info";
 
 const TITLE = "PeerapoS Software House | รับทำแอปและเขียนโปรแกรมตามสั่ง + โปรแกรมฟรีสำหรับ SME";
 const DESCRIPTION =
@@ -68,15 +68,21 @@ const JSON_LD = {
       founder: { "@id": `${SITE_URL}/#peter` },
       areaServed: { "@type": "Country", name: "Thailand" },
       knowsLanguage: ["th", "en"],
-      sameAs: [TIKTOK_URL, LINE_URL],
+      sameAs: [TIKTOK_URL, LINE_URL, FASTWORK_URL],
+      priceRange: "฿500–฿4,500+",
       knowsAbout: ["Custom software development", "Custom application development", "Web applications", "Windows desktop applications", "Inventory systems", "CRM", "Manufacturing execution systems"],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Services",
         itemListElement: [
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "รับทำแอปและเขียนโปรแกรมตามสั่ง (Custom app development)", serviceType: "Custom software development" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "รับทำเว็บแอปสำหรับมือถือ แท็บเล็ต และคอมพิวเตอร์ (Web app development)", serviceType: "Web application development" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "รับทำโปรแกรม Windows ใช้งานออฟไลน์ (Windows desktop apps)", serviceType: "Desktop application development" } },
+          ...SERVICES.map((s) => ({
+            "@type": "Offer",
+            url: FASTWORK_URL,
+            itemOffered: { "@type": "Service", name: `${s.th} (${s.en})`, serviceType: s.type },
+            priceSpecification: { "@type": "UnitPriceSpecification", minPrice: s.price, priceCurrency: "THB", unitText: s.unit },
+          })),
         ],
       },
     },
