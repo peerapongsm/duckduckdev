@@ -91,9 +91,9 @@ const COPY = {
     armoryBody: "เว็บแอป เกม และเครื่องมือเล็ก ๆ ที่ทำทีละตัวตลอดหนึ่งปี เก็บไว้ที่ The Armory",
     armoryLink: "ไปที่ The Armory",
     faqTitle: "คำถามที่พบบ่อย",
-    aboutTitle: "คนที่ทำโปรแกรมพวกนี้",
+    aboutTitle: "หวัดดี ปีเตอร์เอง",
     aboutBody:
-      "Peerapong (Peter) Saksommon คือคนที่ทำทุกโปรแกรมในเว็บนี้ ตอนนี้ทำงานที่ธนาคารแห่งประเทศไทย ก่อนหน้านั้นเป็น Full-Stack Engineer ที่ Agoda งานฟรีแลนซ์ล่าสุดคือระบบ MES ให้โรงงานผลิตกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ ใช้ได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์",
+      "ชื่อจริง Peerapong Saksommon เรียกปีเตอร์ก็ได้ โปรแกรมทุกตัวในเว็บนี้ทำเองหมด งานประจำตอนนี้อยู่ที่ธนาคารแห่งประเทศไทย ก่อนหน้านั้นเขียนโค้ดอยู่ที่ Agoda นอกเวลางานก็ทำโปรแกรมพวกนี้แจกฟรี งานล่าสุดเป็นระบบให้โรงงานทำกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ เปิดได้ทั้งมือถือ แท็บเล็ต และคอม มีงานไหนกินเวลาทุกวัน ทักมาเล่าให้ฟังได้เลย ไม่ต้องเกรงใจ",
     creds: [
       "ธนาคารแห่งประเทศไทย - Software Architect",
       "Ex-Agoda · Full-Stack Engineer",
@@ -170,9 +170,9 @@ const COPY = {
     armoryBody: "Web apps, games and small tools, built one at a time over a year, live in The Armory.",
     armoryLink: "Visit The Armory",
     faqTitle: "Questions people ask",
-    aboutTitle: "Who builds these",
+    aboutTitle: "Hi, I'm Peter",
     aboutBody:
-      "I'm Peerapong (Peter) Saksommon, the engineer behind every app here. I work at the Bank of Thailand, and before that I was a full-stack engineer at Agoda. Most recently I built a manufacturing system for a woven-sack factory, covering breakdown reports, maintenance work orders and spare-parts inventory on phones, tablets and desktops.",
+      "Peerapong Saksommon here, Peter for short. I build every app on this site myself. By day I work at the Bank of Thailand, and before that I wrote code at Agoda. Outside work I make these apps and give them away. Most recently I built a system for a woven-sack factory, covering breakdown reports, work orders and the spare-parts store, on phones, tablets and computers. If something eats your time every day, message me and tell me about it. No pressure.",
     creds: [
       "Bank of Thailand - Software Architect",
       "Ex-Agoda · Full-Stack Engineer",
