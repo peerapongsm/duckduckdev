@@ -26,7 +26,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="th">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        {/* Cloudflare Web Analytics: cookieless visit counts (site is DNS-only, so no auto-inject). */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "11d043768e5c43f79ab5670c2cb322e8"}'
+        />
+      </body>
     </html>
   );
 }
