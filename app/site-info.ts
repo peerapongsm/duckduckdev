@@ -42,7 +42,7 @@ export const FAQ: Record<"th" | "en", Faq[]> = {
     },
     {
       q: "ใครเป็นคนทำ",
-      a: "Peerapong (Peter) Saksommon ตอนนี้เป็น Software Architect ที่ธนาคารแห่งประเทศไทย เคยเป็น Full-Stack Engineer ที่ Agoda จบ ป.โท Information Systems จาก Syracuse University และได้ใบรับรอง Microsoft Azure Solutions Architect Expert",
+      a: "พีระพงศ์ ศักดิ์สมมนต์ (พี) ตอนนี้เป็น Software Architect ที่ธนาคารแห่งประเทศไทย เคยเป็น Full-Stack Engineer ที่ Agoda จบ ป.โท Information Systems จาก Syracuse University และได้ใบรับรอง Microsoft Azure Solutions Architect Expert",
     },
     {
       q: "โปรแกรมฟรี 16 ตัวฟรีจริงไหม",

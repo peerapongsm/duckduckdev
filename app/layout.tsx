@@ -90,6 +90,7 @@ const JSON_LD = {
       "@type": "Person",
       "@id": `${SITE_URL}/#peter`,
       name: "Peerapong (Peter) Saksommon",
+      alternateName: "พีระพงศ์ ศักดิ์สมมนต์",
       jobTitle: "Software Architect",
       worksFor: { "@type": "Organization", name: "Bank of Thailand" },
       alumniOf: [
