@@ -3,21 +3,20 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { APPS, downloadUrl, shotUrls, type DesktopApp } from "./apps-data";
-
-const EMAIL = "contact@peerapongsm.dev";
+import { EMAIL, FAQ, LINE_URL, TIKTOK_URL } from "./site-info";
 const ARMORY_URL = "https://armory.peerapongsm.dev/";
 
 // Brand icon paths from simple-icons (CC0), 24×24 viewBox.
 const SOCIALS = [
   {
     name: "LINE",
-    href: "https://line.me/ti/p/sx3m1nEg53",
+    href: LINE_URL,
     bg: "bg-[#06C755] fill-white",
     path: "M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314",
   },
   {
     name: "TikTok",
-    href: "https://www.tiktok.com/@peera.pos",
+    href: TIKTOK_URL,
     bg: "bg-ink fill-white",
     path: "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.840-.02 8.75-.08 1.4-.54 2.79-1.350 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.150-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z",
   },
@@ -27,7 +26,7 @@ type Lang = "th" | "en";
 
 const COPY = {
   th: {
-    house: "Software House",
+    eyebrow: "Software House รับทำแอปและเขียนโปรแกรมตามสั่ง",
     navApps: "โปรแกรมฟรี",
     navCustom: "รับทำแอป",
     navAbout: "เกี่ยวกับ",
@@ -71,7 +70,7 @@ const COPY = {
       next: "ภาพถัดไป",
       shot: "ภาพที่",
     },
-    customTitle: "รับทำแอปตามสั่ง",
+    customTitle: "รับทำแอปและเขียนโปรแกรมตามสั่ง",
     customSub:
       "งานบางอย่างไม่มีโปรแกรมสำเร็จรูปที่พอดี ถ้างานของร้านคุณยังติดอยู่ในสมุดหรือสเปรดชีต เราทำแอปเล็ก ๆ ให้ตรงกับวิธีทำงานของคุณ",
     steps: [
@@ -91,6 +90,7 @@ const COPY = {
     armoryTitle: "อยากดูงานทดลองอื่น ๆ",
     armoryBody: "เว็บแอป เกม และเครื่องมือเล็ก ๆ ที่ทำทีละตัวตลอดหนึ่งปี เก็บไว้ที่ The Armory",
     armoryLink: "ไปที่ The Armory",
+    faqTitle: "คำถามที่พบบ่อย",
     aboutTitle: "คนที่ทำโปรแกรมพวกนี้",
     aboutBody:
       "Peerapong (Peter) Saksommon คือคนที่ทำทุกโปรแกรมในเว็บนี้ ตอนนี้ทำงานที่ธนาคารแห่งประเทศไทย ก่อนหน้านั้นเป็น Full-Stack Engineer ที่ Agoda งานฟรีแลนซ์ล่าสุดคือระบบ MES ให้โรงงานผลิตกระสอบพลาสติกสาน ตั้งแต่แจ้งซ่อมเครื่องจักร ใบสั่งงาน ไปจนถึงคลังอะไหล่ ใช้ได้ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์",
@@ -106,7 +106,7 @@ const COPY = {
     privacy: "นโยบายความเป็นส่วนตัว",
   },
   en: {
-    house: "Software House",
+    eyebrow: "Software house for custom apps",
     navApps: "Free apps",
     navCustom: "Custom apps",
     navAbout: "About",
@@ -149,7 +149,7 @@ const COPY = {
       next: "Next screenshot",
       shot: "Screenshot",
     },
-    customTitle: "Custom apps",
+    customTitle: "Custom app development",
     customSub:
       "Some work has no off-the-shelf program that fits. If your shop still runs on a notebook or a spreadsheet, we build a small app around the way you already work.",
     steps: [
@@ -169,6 +169,7 @@ const COPY = {
     armoryTitle: "Looking for the experiments?",
     armoryBody: "Web apps, games and small tools, built one at a time over a year, live in The Armory.",
     armoryLink: "Visit The Armory",
+    faqTitle: "Questions people ask",
     aboutTitle: "Who builds these",
     aboutBody:
       "I'm Peerapong (Peter) Saksommon, the engineer behind every app here. I work at the Bank of Thailand, and before that I was a full-stack engineer at Agoda. Most recently I built a manufacturing system for a woven-sack factory, covering breakdown reports, maintenance work orders and spare-parts inventory on phones, tablets and desktops.",
@@ -316,6 +317,7 @@ export default function Home() {
       {/* ── Hero: headline + the tile wall ─────────────── */}
       <section id="top" className="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-6 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16 lg:pb-28 lg:pt-14">
         <div className="max-w-xl">
+          <p className="mb-3 font-semibold text-indigo">{t.eyebrow}</p>
           <h1 className="font-display text-[2.6rem] font-bold leading-[1.15] tracking-tight sm:text-6xl">{t.h1}</h1>
           <p className="mt-5 text-lg leading-relaxed text-graphite sm:text-xl">{t.heroSub}</p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -396,6 +398,24 @@ export default function Home() {
             <a href={ARMORY_URL} className="shrink-0 font-semibold text-indigo underline decoration-2 underline-offset-4 hover:text-indigo-deep">
               {t.armoryLink}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ: same answers feed the FAQPage JSON-LD and /llms.txt ── */}
+      <section id="faq" className="border-t border-line py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl px-4 sm:px-8">
+          <h2 className="font-display text-3xl font-bold tracking-tight sm:text-5xl">{t.faqTitle}</h2>
+          <div className="mt-8 border-t border-line">
+            {FAQ[lang].map((f) => (
+              <details key={f.q} className="group border-b border-line py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold">
+                  {f.q}
+                  <span aria-hidden="true" className="text-2xl text-graphite transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 leading-relaxed text-graphite">{f.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

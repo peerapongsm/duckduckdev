@@ -8,6 +8,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "นโยบายความเป็นส่วนตัว · Privacy Policy — PeerapoS",
   description: "Privacy policy for the PeerapoS Windows desktop apps by PeerapoS.",
+  // override the layout's "/" canonical and og:url
+  alternates: { canonical: "/privacy" },
+  openGraph: { url: "/privacy" },
 };
 
 const EMAIL = "contact@peerapongsm.dev";

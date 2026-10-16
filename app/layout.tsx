@@ -13,12 +13,104 @@ import "@fontsource/ibm-plex-sans-thai-looped/latin-500.css";
 import "@fontsource/ibm-plex-sans-thai-looped/latin-600.css";
 import "@fontsource/ibm-plex-sans-thai-looped/latin-700.css";
 import "./globals.css";
+import { APPS, downloadUrl } from "./apps-data";
+import { EMAIL, FAQ, LINE_URL, SITE_URL, TIKTOK_URL } from "./site-info";
+
+const TITLE = "PeerapoS Software House | รับทำแอปและเขียนโปรแกรมตามสั่ง + โปรแกรมฟรีสำหรับ SME";
+const DESCRIPTION =
+  "Software house รับทำแอปและเขียนโปรแกรมตามสั่งสำหรับธุรกิจ ทั้งโปรแกรม Windows และเว็บแอป ระบบสต็อก ลูกค้า ใบสั่งงาน แจ้งซ่อม ใช้เวลาเป็นสัปดาห์ พร้อมโปรแกรมฟรี 16 ตัวสำหรับ SME ใช้งานออฟไลน์";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://peerapongsm.dev"),
-  title: "PeerapoS — โปรแกรมฟรีสำหรับ SME และรับทำแอปตามสั่ง",
-  description:
-    "PeerapoS ทำโปรแกรม Windows ฟรีสำหรับธุรกิจเล็ก 16 ตัว ใช้งานออฟไลน์ ข้อมูลอยู่ในเครื่องคุณ และรับทำแอปตามสั่งให้พอดีกับงานของร้าน",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: [
+    "software house",
+    "รับทำแอป",
+    "รับเขียนโปรแกรม",
+    "รับทำโปรแกรม",
+    "รับทำแอปตามสั่ง",
+    "custom application",
+    "custom software development Thailand",
+    "รับทำเว็บแอป",
+    "โปรแกรมฟรี SME",
+    "โปรแกรมสต็อกฟรี",
+    "โปรแกรมร้านค้า",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "PeerapoS",
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "th_TH",
+    alternateLocale: ["en_US"],
+    images: [{ url: "/apps/shots/stock-1.webp", width: 1920, height: 1080, alt: "PeerapoS Stock" }],
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION, images: ["/apps/shots/stock-1.webp"] },
+  robots: { index: true, follow: true, googleBot: { "max-image-preview": "large", "max-snippet": -1 } },
+};
+
+// schema.org graph for Google rich results and AI answer engines.
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#org`,
+      name: "PeerapoS",
+      alternateName: "PeerapoS Software House",
+      description: DESCRIPTION,
+      url: SITE_URL,
+      image: `${SITE_URL}/apps/shots/stock-1.webp`,
+      email: EMAIL,
+      founder: { "@id": `${SITE_URL}/#peter` },
+      areaServed: { "@type": "Country", name: "Thailand" },
+      knowsLanguage: ["th", "en"],
+      sameAs: [TIKTOK_URL, LINE_URL],
+      knowsAbout: ["Custom software development", "Custom application development", "Web applications", "Windows desktop applications", "Inventory systems", "CRM", "Manufacturing execution systems"],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Services",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "รับทำแอปและเขียนโปรแกรมตามสั่ง (Custom app development)", serviceType: "Custom software development" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "รับทำเว็บแอปสำหรับมือถือ แท็บเล็ต และคอมพิวเตอร์ (Web app development)", serviceType: "Web application development" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "รับทำโปรแกรม Windows ใช้งานออฟไลน์ (Windows desktop apps)", serviceType: "Desktop application development" } },
+        ],
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#peter`,
+      name: "Peerapong (Peter) Saksommon",
+      jobTitle: "Software Architect",
+      worksFor: { "@type": "Organization", name: "Bank of Thailand" },
+      alumniOf: [
+        { "@type": "CollegeOrUniversity", name: "Syracuse University" },
+        { "@type": "CollegeOrUniversity", name: "University of Washington" },
+      ],
+      hasCredential: "Microsoft Certified: Azure Solutions Architect Expert",
+      image: `${SITE_URL}/peter.webp`,
+      url: `${SITE_URL}/#about`,
+    },
+    { "@type": "WebSite", "@id": `${SITE_URL}/#site`, url: SITE_URL, name: "PeerapoS", inLanguage: ["th", "en"], publisher: { "@id": `${SITE_URL}/#org` } },
+    {
+      "@type": "FAQPage",
+      mainEntity: [...FAQ.th, ...FAQ.en].map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    },
+    ...APPS.map((a) => ({
+      "@type": "SoftwareApplication",
+      name: a.name,
+      description: `${a.th.tagline} — ${a.en.tagline} ${a.en.description}`,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Windows 10, Windows 11",
+      softwareVersion: a.version,
+      downloadUrl: downloadUrl(a),
+      offers: { "@type": "Offer", price: "0", priceCurrency: "THB" },
+      author: { "@id": `${SITE_URL}/#org` },
+    })),
+  ],
 };
 
 export default function RootLayout({
@@ -27,6 +119,7 @@ export default function RootLayout({
   return (
     <html lang="th">
       <body className="antialiased">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD).replace(/</g, "\\u003c") }} />
         {children}
         {/* Cloudflare Web Analytics: cookieless visit counts (site is DNS-only, so no auto-inject). */}
         <script
