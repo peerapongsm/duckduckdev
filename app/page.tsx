@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { APPS, downloadUrl, shotUrls, type DesktopApp } from "./apps-data";
-import { EMAIL, FAQ, LINE_URL, TIKTOK_URL } from "./site-info";
+import { EMAIL, FAQ, FASTWORK_URL, LINE_URL, TIKTOK_URL } from "./site-info";
 const ARMORY_URL = "https://armory.peerapongsm.dev/";
 
-// Brand icon paths from simple-icons (CC0), 24×24 viewBox.
-const SOCIALS = [
+// Brand icon paths from simple-icons (CC0), 24×24 viewBox unless noted.
+const SOCIALS: { name: string; href: string; bg: string; path: string; viewBox?: string }[] = [
   {
     name: "LINE",
     href: LINE_URL,
@@ -19,6 +19,14 @@ const SOCIALS = [
     href: TIKTOK_URL,
     bg: "bg-ink fill-white",
     path: "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.840-.02 8.75-.08 1.4-.54 2.79-1.350 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.150-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z",
+  },
+  {
+    // Fastwork isn't in simple-icons; mark from fastwork.com/favicon.svg (40×40), cropped to the mark.
+    name: "Fastwork",
+    href: FASTWORK_URL,
+    bg: "bg-white fill-[#1A1F2E]",
+    viewBox: "4 4 32 32",
+    path: "M32.883 24.9073L26.9362 20.3268L27.0544 21.2126C27.1112 21.573 27.1396 21.9373 27.1396 22.3021C27.1389 22.6189 27.1183 22.9353 27.0781 23.2495L31.4779 26.641C31.8864 26.9311 32.1722 27.3633 32.2792 27.8531C32.3861 28.343 32.3067 28.8552 32.0564 29.2895C31.8061 29.7238 31.4029 30.0489 30.9258 30.2012C30.4486 30.3536 29.9319 30.3221 29.4767 30.1131L22.8533 27.3705C23.7503 26.8648 24.4969 26.1293 25.0165 25.2395C25.5361 24.3497 25.81 23.3375 25.8102 22.3068C25.809 21.9365 25.7742 21.5671 25.7061 21.2031L24.1969 9.83476C24.0642 8.81628 23.566 7.88093 22.7951 7.20324C22.0243 6.52556 21.0335 6.15186 20.0076 6.15186C18.9818 6.15186 17.991 6.52556 17.2201 7.20324C16.4493 7.88093 15.951 8.81628 15.8183 9.83476L14.8295 17.2811L15.5345 16.7363C15.819 16.5075 16.1211 16.3016 16.4381 16.1205C16.7074 15.9656 16.9854 15.8264 17.2707 15.7037L18.004 10.1948C18.0524 9.69697 18.2842 9.23504 18.6541 8.89895C19.0241 8.56286 19.5057 8.37668 20.0052 8.37668C20.5048 8.37668 20.9864 8.56286 21.3564 8.89895C21.7263 9.23504 21.9581 9.69697 22.0065 10.1948L22.9527 17.3C21.8955 16.6787 20.6693 16.4078 19.4492 16.5261C18.229 16.6443 17.0775 17.1457 16.159 17.9584L7.11804 24.9216C6.30101 25.5452 5.73894 26.4455 5.53701 27.4541C5.33508 28.4627 5.50713 29.5104 6.02096 30.4011C6.5348 31.2919 7.35521 31.9646 8.32866 32.2935C9.30212 32.6224 10.3619 32.5848 11.3097 32.1878L18.2406 29.3221L17.4174 28.981C17.0799 28.8472 16.7526 28.6889 16.4381 28.5073C16.1677 28.3519 15.9085 28.1778 15.6622 27.9863L10.5244 30.1131C10.0691 30.3221 9.5524 30.3536 9.07527 30.2012C8.59813 30.0489 8.19495 29.7238 7.94464 29.2895C7.69432 28.8552 7.61489 28.343 7.72189 27.8531C7.82889 27.3633 8.11462 26.9311 8.52315 26.641L14.2003 22.2642C14.2003 22.2642 14.2003 22.2926 14.2003 22.3068C14.2013 23.4928 14.5643 24.6502 15.2408 25.6239C15.9173 26.5975 16.8748 27.3408 17.9851 27.7542L28.7008 32.1736C29.6482 32.5674 30.7063 32.6027 31.6777 32.2728C32.6492 31.9429 33.4675 31.2704 33.9802 30.3808C34.4928 29.4912 34.6646 28.4452 34.4636 27.438C34.2626 26.4309 33.7025 25.5314 32.8877 24.9073H32.883ZM16.4002 22.2926C16.4012 21.5827 16.6123 20.8889 17.0069 20.2991C17.4015 19.7093 17.9619 19.2498 18.6173 18.9788C19.2726 18.7078 19.9935 18.6373 20.6888 18.7764C21.3842 18.9155 22.0227 19.2578 22.5237 19.7602C23.0248 20.2625 23.3659 20.9023 23.5039 21.5986C23.6418 22.295 23.5705 23.0167 23.299 23.6725C23.0274 24.3283 22.5678 24.8888 21.9782 25.2831C21.3885 25.6774 20.6954 25.8879 19.9863 25.8879C19.515 25.8879 19.0483 25.7948 18.6129 25.6141C18.1775 25.4334 17.782 25.1685 17.4489 24.8345C17.1158 24.5006 16.8518 24.1043 16.6719 23.6681C16.4919 23.2319 16.3996 22.7645 16.4002 22.2926Z",
   },
 ];
 
@@ -104,6 +112,7 @@ const COPY = {
     contactTitle: "เล่าให้ฟังว่าอะไรกินเวลาคุณทุกวัน",
     contactSub: "ส่งอีเมลหรือทัก LINE มาได้เลย ถ้าแอปเล็ก ๆ ช่วยได้ เราจะบอกว่าทำอะไรได้บ้างและใช้เวลาเท่าไร",
     privacy: "นโยบายความเป็นส่วนตัว",
+    visitor: "คุณคือผู้เข้าชมคนที่",
   },
   en: {
     eyebrow: "Software house for custom apps",
@@ -183,6 +192,7 @@ const COPY = {
     contactTitle: "Tell us what eats your time every day",
     contactSub: "Send an email or message us on LINE. If a small app can help, we'll tell you what it would do and how long it would take.",
     privacy: "Privacy policy",
+    visitor: "You are visitor no.",
   },
 } as const;
 
@@ -295,6 +305,16 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.lang = lang;
   }, [lang]);
+
+  // 2000s-style hit counter: every page load counts, like the originals did.
+  // ponytail: free Abacus API, no backend; if it's down the counter just stays hidden.
+  const [visits, setVisits] = useState<number | null>(null);
+  useEffect(() => {
+    fetch("https://abacus.jasoncameron.dev/hit/peerapongsm.dev/visits")
+      .then((r) => r.json())
+      .then((d) => typeof d.value === "number" && setVisits(d.value))
+      .catch(() => {});
+  }, []);
 
   return (
     <main className="overflow-x-clip">
@@ -468,7 +488,7 @@ export default function Home() {
                   title={s.name}
                   className={`grid size-14 place-items-center rounded-xl border border-white/25 ${s.bg}`}
                 >
-                  <svg viewBox="0 0 24 24" aria-hidden="true" className="size-7">
+                  <svg viewBox={s.viewBox ?? "0 0 24 24"} aria-hidden="true" className="size-7">
                     <path d={s.path} />
                   </svg>
                 </a>
@@ -478,6 +498,14 @@ export default function Home() {
 
           <footer className="mt-16 flex flex-col gap-2 border-t border-white/15 pt-6 text-sm text-white/60 sm:flex-row sm:justify-between">
             <span>© 2026 PeerapoS</span>
+            {visits !== null && (
+              <span className="flex items-center gap-2">
+                {t.visitor}
+                <span className="rounded border-2 border-white/40 bg-black px-1.5 py-0.5 font-mono text-base font-bold tracking-[0.25em] text-[#39ff14] [text-shadow:0_0_6px_#39ff14]">
+                  {String(visits).padStart(6, "0")}
+                </span>
+              </span>
+            )}
             <a href="/privacy" className="hover:text-white">{t.privacy}</a>
           </footer>
         </div>
